@@ -1,0 +1,324 @@
+/* VARIABLES DE DISEÑO (Innovación y Minimalismo) */
+:root {
+    --bg-color: #F8FAFC;
+    --text-main: #0F172A;
+    --text-light: #64748B;
+    --primary-accent: #0284C7; /* Azul tech */
+    --secondary-accent: #38BDF8; /* Cian neón */
+    --like-color: #EF4444; /* Rojo para corazones */
+    
+    /* Colores para las 5 secciones (Personalizables) */
+    --c-sec1: #F43F5E;
+    --c-sec2: #F59E0B;
+    --c-sec3: #10B981;
+    --c-sec4: #3B82F6;
+    --c-sec5: #8B5CF6;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    line-height: 1.6;
+}
+
+/* NAVEGACIÓN */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 5%;
+    background: #ffffff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-weight: 800;
+    font-size: 1.5rem;
+    color: var(--primary-accent);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-main);
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--primary-accent);
+}
+
+/* BOTONES GLOBALES */
+.btn-primary {
+    background-color: var(--primary-accent);
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary-accent);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--primary-accent);
+    border: 2px solid var(--primary-accent);
+    padding: 10px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-text {
+    background: none;
+    border: none;
+    color: var(--text-light);
+    text-decoration: underline;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+/* 1. HERO & ORIGAMI */
+.hero-section {
+    padding: 5rem 5%;
+    text-align: center;
+    background: linear-gradient(135deg, #E0F2FE 0%, #ffffff 100%);
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.origami-container {
+    margin: 3rem auto;
+    width: 300px;
+    height: 300px;
+    background: #ffffff;
+    border: 2px dashed var(--secondary-accent);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    transition: transform 0.3s;
+}
+
+.origami-container:hover {
+    transform: scale(1.05);
+}
+
+.frase-revelada {
+    font-style: italic;
+    color: var(--text-light);
+    margin-top: 10px;
+}
+
+.download-form {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.download-form input {
+    padding: 10px;
+    width: 250px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+/* 2. ABOUT EBOOK */
+.about-ebook {
+    padding: 4rem 10%;
+    text-align: center;
+    background: #ffffff;
+}
+
+/* 3. SECTIONS OVERVIEW */
+.sections-overview {
+    padding: 4rem 5%;
+}
+
+.sections-overview h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.sections-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+}
+
+.section-card {
+    padding: 2rem;
+    border-radius: 12px;
+    background: #ffffff;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    text-align: center;
+    border-top: 5px solid;
+}
+
+.color-sec-1 { border-color: var(--c-sec1); }
+.color-sec-2 { border-color: var(--c-sec2); }
+.color-sec-3 { border-color: var(--c-sec3); }
+.color-sec-4 { border-color: var(--c-sec4); }
+.color-sec-5 { border-color: var(--c-sec5); }
+
+/* 4. GALLERY CAROUSEL */
+.gallery-carousel {
+    padding: 4rem 5%;
+    text-align: center;
+    background: #F1F5F9;
+}
+
+.carousel-container {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 2rem 0;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+}
+
+.carousel-slide {
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    min-width: 300px;
+}
+
+.image-placeholder {
+    width: 100%;
+    height: 400px;
+    background: #E2E8F0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+.interaction-bar {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+    border-top: 1px solid #F1F5F9;
+}
+
+.likes, .share {
+    cursor: pointer;
+    color: var(--text-light);
+    transition: color 0.2s;
+}
+
+.heart-icon.active {
+    color: var(--like-color);
+    font-weight: 900; /* FontAwesome Solid */
+}
+
+/* 5. GAMIFICATION (Batalla) */
+.gamification-section {
+    padding: 5rem 5%;
+    text-align: center;
+    background: #ffffff;
+}
+
+.vs-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin: 3rem 0;
+    flex-wrap: wrap;
+}
+
+.choice-card {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.vs-badge {
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--primary-accent);
+    background: var(--bg-color);
+    padding: 1rem;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* 6. OTHER EBOOKS */
+.other-ebooks {
+    padding: 4rem 5%;
+    background: var(--bg-color);
+    text-align: center;
+}
+
+.ebooks-grid {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 2rem;
+}
+
+.cover-placeholder {
+    width: 150px;
+    height: 220px;
+    background: #CBD5E1;
+    margin: 0 auto 1rem auto;
+    border-radius: 4px;
+}
+
+/* 7. FOOTER */
+.site-footer {
+    background: var(--text-main);
+    color: white;
+    text-align: center;
+    padding: 3rem 5%;
+}
+
+.social-links {
+    margin-bottom: 2rem;
+}
+
+.social-links a {
+    color: white;
+    font-size: 1.5rem;
+    margin: 0 10px;
+    transition: color 0.3s;
+}
+
+.social-links a:hover {
+    color: var(--secondary-accent);
+}
