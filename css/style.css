@@ -322,3 +322,56 @@ body {
 .social-links a:hover {
     color: var(--secondary-accent);
 }
+
+/* --- ANIMACIÓN ESTILO ORIGAMI / PLEGADO --- */
+.origami-wrapper {
+    width: 320px;
+    height: 320px;
+    margin: 2rem auto 0 auto;
+    perspective: 1000px; /* Crea la profundidad 3D */
+    cursor: pointer;
+}
+
+.origami-paper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+}
+
+/* Clase que aplicará JS para "desdoblar" */
+.origami-paper.is-open {
+    transform: rotateY(180deg);
+}
+
+.origami-front, .origami-back {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden; /* Oculta la parte de atrás al girar */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.origami-front {
+    background: #ffffff;
+    border: 2px dashed var(--secondary-accent);
+}
+
+.origami-back {
+    background: var(--bg-color);
+    border: 2px solid var(--primary-accent);
+    transform: rotateY(180deg); /* Empieza volteado */
+}
+
+.frase-revelada {
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--text-main);
+}

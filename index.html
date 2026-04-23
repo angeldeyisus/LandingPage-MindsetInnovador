@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>[TÍTULO DEL EBOOK AQUÍ]</title>
+    <title>Mindset Innovador</title>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
     <nav class="navbar">
-        <div class="logo">[LOGO / NOMBRE EBOOK]</div>
+        <div class="logo">Mindset Innovador</div>
         <ul class="nav-links">
             <li><a href="#hero">Inicio</a></li>
             <li><a href="#secciones">Las 5 Secciones</a></li>
@@ -25,12 +25,28 @@
             <h1>[TÍTULO PRINCIPAL: LOREM IPSUM DOLOR SIT AMET]</h1>
             <p>[SUBTÍTULO ATRACTIVO SOBRE INNOVACIÓN AQUÍ]</p>
             
-            <div class="origami-container" id="origami-game">
-                <div class="origami-placeholder">
-                    <span>[ZONA DE ANIMACIÓN ORIGAMI: CLIC PARA DESDOBLAR]</span>
-                    <p class="frase-revelada">[AQUÍ APARECERÁ LA FRASE ALEATORIA AL DESDOBLAR]</p>
-                </div>
-            </div>
+            <div class="origami-wrapper" id="origami-btn">
+    <div class="origami-paper" id="origami-paper">
+        <div class="origami-front">
+            <i class="fas fa-paper-plane" style="font-size: 3rem; margin-bottom: 1rem; color: var(--primary-accent);"></i>
+            <span>Toca para desdoblar una idea</span>
+        </div>
+        <div class="origami-back">
+            <p id="frase-texto" class="frase-revelada">Lorem ipsum dolor sit amet...</p>
+        </div>
+    </div>
+</div>
+<p id="contador-frases" style="margin-top: 15px; font-weight: bold; color: var(--text-light);">Ideas descubiertas: 0 / 5</p>
+
+<div class="download-trigger" id="download-trigger" style="display: none; text-align: center;">
+    <h3 style="margin-bottom: 15px; color: var(--primary-accent);">¡Has descubierto tu dosis de innovación!</h3>
+    <p style="margin-bottom: 20px;">Descarga el ebook completo para leer todas las frases.</p>
+    <form action="guardar_email.php" method="POST" class="download-form" style="margin-bottom: 15px;">
+        <input type="email" name="email" placeholder="Tu correo electrónico..." required>
+        <button type="submit" class="btn-primary">Descargar Ebook</button>
+    </form>
+    <button type="button" id="btn-ahora-no" class="btn-text">Ahora no, quiero seguir leyendo</button>
+</div>
 
             <div class="download-trigger" id="download-trigger" style="display: none;">
                 <h3>¡Has descubierto 5 frases!</h3>
@@ -143,5 +159,6 @@
         <p>&copy; 2026 [NOMBRE DEL AUTOR]. Todos los derechos reservados.</p>
     </footer>
 
+    <script src="scripts/script.js"></script>
 </body>
 </html>
