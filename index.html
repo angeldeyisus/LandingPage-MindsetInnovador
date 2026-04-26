@@ -1,164 +1,257 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mindset Innovador</title>
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-</head>
-<body>
-
+    <link rel="stylesheet" href="./css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body>
     <nav class="navbar">
-        <div class="logo">Mindset Innovador</div>
-        <ul class="nav-links">
-            <li><a href="#hero">Inicio</a></li>
-            <li><a href="#secciones">Las 5 Secciones</a></li>
-            <li><a href="#galeria">Galería</a></li>
-            <li><a href="#juegos">Juega y Descubre</a></li>
-            <li><a href="#autor">Más del Autor</a></li>
-        </ul>
+      <div class="logo">Mindset Innovador</div>
+      <ul class="nav-links">
+        <li><a href="#hero">Inicio</a></li>
+        <li><a href="#secciones">Las 5 Secciones</a></li>
+        <li><a href="#galeria">Galería</a></li>
+        <li><a href="#juegos">Juega y Descubre</a></li>
+        <li><a href="#autor">Más del Autor</a></li>
+      </ul>
     </nav>
 
     <header id="hero" class="hero-section">
-        <div class="hero-content">
-            <h1>[TÍTULO PRINCIPAL: LOREM IPSUM DOLOR SIT AMET]</h1>
-            <p>[SUBTÍTULO ATRACTIVO SOBRE INNOVACIÓN AQUÍ]</p>
-            
-            <div class="origami-wrapper" id="origami-btn">
-    <div class="origami-paper" id="origami-paper">
-        <div class="origami-front">
-            <i class="fas fa-paper-plane" style="font-size: 3rem; margin-bottom: 1rem; color: var(--primary-accent);"></i>
-            <span>Toca para desdoblar una idea</span>
-        </div>
-        <div class="origami-back">
-            <p id="frase-texto" class="frase-revelada">Lorem ipsum dolor sit amet...</p>
-        </div>
-    </div>
-</div>
-<p id="contador-frases" style="margin-top: 15px; font-weight: bold; color: var(--text-light);">Ideas descubiertas: 0 / 5</p>
+      <div class="hero-content">
+        <h1>DESCUBRE EL MINDSET INNOVADOR</h1>
+        <p>
+          Una colección de mas de 100 frases creadas para inspirar creatividad,
+          reflexión y acción en estudiantes, emprendedores, líderes y personas
+          que buscan transformar su entorno.
+        </p>
 
-<div class="download-trigger" id="download-trigger" style="display: none; text-align: center;">
-    <h3 style="margin-bottom: 15px; color: var(--primary-accent);">¡Has descubierto tu dosis de innovación!</h3>
-    <p style="margin-bottom: 20px;">Descarga el ebook completo para leer todas las frases.</p>
-    <form action="guardar_email.php" method="POST" class="download-form" style="margin-bottom: 15px;">
-        <input type="email" name="email" placeholder="Tu correo electrónico..." required>
-        <button type="submit" class="btn-primary">Descargar Ebook</button>
-    </form>
-    <button type="button" id="btn-ahora-no" class="btn-text">Ahora no, quiero seguir leyendo</button>
-</div>
-
-            <div class="download-trigger" id="download-trigger" style="display: none;">
-                <h3>¡Has descubierto 5 frases!</h3>
-                <form action="[TU_SCRIPT_DE_BASE_DE_DATOS.php]" method="POST" class="download-form">
-                    <input type="email" name="email" placeholder="Ingresa tu email válido..." required>
-                    <button type="submit" class="btn-primary">Descargar Ebook Completo</button>
-                </form>
+        <div class="origami-wrapper" id="origami-btn">
+          <div class="origami-paper" id="origami-paper">
+            <div class="origami-front">
+              <i
+                class="fas fa-paper-plane"
+                style="
+                  font-size: 3rem;
+                  margin-bottom: 1rem;
+                  color: var(--primary-accent);
+                "
+              ></i>
+              <span>Toca para desdoblar una idea</span>
             </div>
+            <div class="origami-back">
+              <p id="frase-texto" class="frase-revelada">
+                Lorem ipsum dolor sit amet...
+              </p>
+            </div>
+          </div>
         </div>
+        <p
+          id="contador-frases"
+          style="margin-top: 15px; font-weight: bold; color: var(--text-light)"
+        >
+          Ideas descubiertas: 0 / 5
+        </p>
+
+        <div
+          class="download-trigger"
+          id="download-trigger"
+          style="display: none; text-align: center"
+        >
+          <h3 style="margin-bottom: 15px; color: var(--primary-accent)">
+            ¡Has descubierto tu dosis de innovación!
+          </h3>
+          <p style="margin-bottom: 20px">
+            Descarga el ebook completo para leer todas las frases.
+          </p>
+          <form
+            action="guardar_email.php"
+            method="POST"
+            class="download-form"
+            style="margin-bottom: 15px"
+          >
+            <input
+              type="email"
+              name="email"
+              placeholder="Tu correo electrónico..."
+              required
+            />
+            <button type="submit" class="btn-primary">Descargar Ebook</button>
+          </form>
+          <button type="button" id="btn-ahora-no" class="btn-text">
+            Ahora no, quiero seguir leyendo
+          </button>
+        </div>
+
+        <div
+          class="download-trigger"
+          id="download-trigger"
+          style="display: none"
+        >
+          <h3>¡Has descubierto 5 frases!</h3>
+          <form
+            action="[TU_SCRIPT_DE_BASE_DE_DATOS.php]"
+            method="POST"
+            class="download-form"
+          >
+            <input
+              type="email"
+              name="email"
+              placeholder="Ingresa tu email válido..."
+              required
+            />
+            <button type="submit" class="btn-primary">
+              Descargar Ebook Completo
+            </button>
+          </form>
+        </div>
+      </div>
     </header>
 
     <section class="about-ebook">
-        <div class="container">
-            <h2>[INNOVAR COMIENZA EN LA MENTE]</h2>
-            <p>[REEMPLAZAR CON TEXTO DE PÁGINAS 2, 4, 5 y 126] Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-        </div>
+      <div class="container">
+        <h2>INNOVAR COMIENZA EN LA MENTE</h2>
+        <p>
+          El Mindset Innovador nace de la experiencia trabajando con
+          estudiantes, emprendedores y organizaciones que descubrieron que
+          innovar no se trata solo de técnicas, sino de aprender a observar
+          diferente, cuestionar lo establecido y actuar con propósito. Este
+          ebook reúne más de 100 frases pensadas para inspirarte en distintos
+          momentos. No busca decirte qué pensar, sino invitarte a pensar
+          distinto, activar tu creatividad y convertir ideas en acción. A lo
+          largo de sus cinco etapas, recorrerás el camino de la innovación:
+          desde la curiosidad inicial, la exploración de ideas, su validación en
+          el mundo real, la generación de impacto y el aprendizaje continuo. Más
+          que leer sobre innovación, aquí descubrirás cómo vivirla.
+        </p>
+      </div>
     </section>
 
     <section id="secciones" class="sections-overview">
-        <h2>[TÍTULO: EXPLORA NUESTRAS SECCIONES]</h2>
-        <div class="sections-grid">
-            <div class="section-card color-sec-1">
-                <h3>[SECCIÓN 1]</h3>
-                <p>[REEMPLAZAR CON TEXTO DE PÁGINAS 6 Y 7] Lorem ipsum dolor sit amet.</p>
-                <span>Imágenes 8 a 131</span>
-            </div>
-            <div class="section-card color-sec-2">
-                <h3>[SECCIÓN 2]</h3>
-                <p>[REEMPLAZAR CON TEXTO DE PÁGINAS 32 Y 33] Lorem ipsum dolor sit amet.</p>
-                <span>Imágenes 34 a 61</span>
-            </div>
-            <div class="section-card color-sec-3">
-                <h3>[SECCIÓN 3]</h3>
-                <p>[REEMPLAZAR CON TEXTO DE PÁGINAS 62 Y 63] Lorem ipsum dolor sit amet.</p>
-                <span>Imágenes 64 a 85</span>
-            </div>
-            <div class="section-card color-sec-4">
-                <h3>[SECCIÓN 4]</h3>
-                <p>[REEMPLAZAR CON TEXTO DE PÁGINAS 86 Y 87] Lorem ipsum dolor sit amet.</p>
-                <span>Imágenes 88 a 106</span>
-            </div>
-            <div class="section-card color-sec-5">
-                <h3>[SECCIÓN 5]</h3>
-                <p>[REEMPLAZAR CON TEXTO DE PÁGINAS 108 Y 109] Lorem ipsum dolor sit amet.</p>
-                <span>Imágenes 109 a 125</span>
-            </div>
+      <h2>FASES DEL PROCESO INNOVADOR</h2>
+      <div class="sections-grid">
+        <div class="section-card color-sec-3">
+          <h3>Antes de Innovar: La Semilla</h3>
+          <p>
+            La innovación no nace solo de una gran idea, sino de observar
+            diferente, cuestionar lo establecido y detectar oportunidades que
+            otros no ven. Comienza con curiosidad, empatía y la valentía de
+            imaginar nuevas posibilidades. Antes de tener respuestas, innovar
+            significa aprender a hacer mejores preguntas.
+          </p>
+          <span>La Innovacion la hacen las Personas para las Personas👥</span>
         </div>
+        <div class="section-card color-sec-2">
+          <h3>Encender la Chispa: Ideación y Exploración</h3>
+          <p>
+            La innovación surge cuando las ideas se convierten en acción. Es la
+            etapa del caos creativo, donde experimentar, colaborar y atreverse a
+            fallar vale más que buscar perfección. Aquí nacen nuevas
+            posibilidades al transformar lo imaginado en algo real.
+          </p>
+          <span
+            >Una habilidad del innovador: fallar rápido y aprender más
+            rapido⚡</span
+          >
+        </div>
+        <div class="section-card color-sec-4">
+          <h3>En Acción: Desarrollo y Validación</h3>
+          <p>
+            La innovación se fortalece cuando las ideas salen al mundo y se
+            ponen a prueba. En esta etapa importa escuchar, ajustar, aprender
+            del feedback y validar si realmente aporta valor a las personas.
+          </p>
+          <span>Validar una idea no es buscar que esté bien, es buscar en qué está mal🔍</span>
+        </div>
+        <div class="section-card color-sec-1">
+          <h3>Lanzar e Impactar: Implementación y Escalabilidad</h3>
+          <p>
+            Innovar no termina al lanzar una idea, ahí comienza su verdadero
+            impacto. Es el momento de implementarla, compartirla y hacerla
+            crecer para transformar realidades y generar valor colectivo.
+          </p>
+          <span>El cambio no se impone, se invita🤝</span>
+        </div>
+        <div class="section-card color-sec-5">
+          <h3>Después de Innovar: Aprendizaje y Evolución</h3>
+          <p>
+            Toda innovación abre el camino hacia la siguiente. Esta fase invita
+            a reflexionar, aprender de los aciertos y errores, y convertir cada
+            experiencia en impulso para nuevas oportunidades.
+          </p>
+          <span>El fracaso no es lo opuesto de la innovación, es parte de ella🔄</span>
+        </div>
+      </div>
     </section>
 
     <section id="galeria" class="gallery-carousel">
-        <h2>[TÍTULO: INSPÍRATE AL AZAR]</h2>
-        <div class="carousel-container">
-            <div class="carousel-slide">
-                <div class="image-placeholder">[IMAGEN PNG ALEATORIA AQUÍ]</div>
-                <div class="interaction-bar">
-                    <div class="likes">
-                        <i class="far fa-heart heart-icon"></i> 
-                        <span class="like-count">124</span>
-                    </div>
-                    <div class="share">
-                        <i class="fas fa-share-alt"></i> Compartir
-                    </div>
-                </div>
+      <h2>Las Más Valoradas</h2>
+      <div class="carousel-container">
+        <div class="carousel-slide">
+          <img src="Img/8.png" alt="Imagen aleatoria" class="image-placeholder">
+          <div class="interaction-bar">
+            <div class="likes">
+              <i class="far fa-heart heart-icon"></i>
+              <span class="like-count">124</span>
             </div>
-            </div>
-        <button class="btn-secondary">[BOTÓN: MOSTRAR MÁS]</button>
+            <div class="share"><i class="fas fa-share-alt"></i> Compartir</div>
+          </div>
+        </div>
+      </div>
+      <button class="btn-secondary">[BOTÓN: MOSTRAR MÁS]</button>
     </section>
 
     <section id="juegos" class="gamification-section">
-        <h2>[TÍTULO: ¿CUÁL TE INSPIRA MÁS?]</h2>
-        <p>[INSTRUCCIONES DEL JUEGO LOREM IPSUM] Elige tu favorita para continuar.</p>
-        
-        <div class="vs-container">
-            <div class="choice-card">
-                <div class="image-placeholder">[IMAGEN PNG OPCIÓN A]</div>
-                <button class="btn-primary">¡Me gusta esta!</button>
-            </div>
-            <div class="vs-badge">VS</div>
-            <div class="choice-card">
-                <div class="image-placeholder">[IMAGEN PNG OPCIÓN B]</div>
-                <button class="btn-primary">¡Me quedo con esta!</button>
-            </div>
+      <h2> ¿CUÁL TE INSPIRA MÁS?</h2>
+      <p>
+        Elige tu favorita para continuar.
+      </p>
+
+      <div class="vs-container">
+        <div class="choice-card">
+          <img src="Img/74.png" alt="Opción A" class="image-placeholder">
+          <button class="btn-primary">¡Me gusta esta!</button>
         </div>
-        <button class="btn-text">[BOTÓN: REGRESAR A PANTALLA PRINCIPAL]</button>
+        <div class="vs-badge">VS</div>
+        <div class="choice-card">
+          <img src="Img/40.png" alt="Opción B" class="image-placeholder">
+          <button class="btn-primary">¡Me quedo con esta!</button>
+        </div>
+      </div>
+      <button class="btn-text">[BOTÓN: REGRESAR A PANTALLA PRINCIPAL]</button>
     </section>
 
     <section id="autor" class="other-ebooks">
-        <h2>[TÍTULO: MÁS RECURSOS PARA INNOVADORES]</h2>
-        <div class="ebooks-grid">
-            <div class="ebook-item">
-                <div class="cover-placeholder">[PORTADA LIBRO 1]</div>
-                <h4>[TÍTULO LIBRO 1]</h4>
-                <a href="#">Ver más</a>
-            </div>
-            <div class="ebook-item">
-                <div class="cover-placeholder">[PORTADA LIBRO 2]</div>
-                <h4>[TÍTULO LIBRO 2]</h4>
-                <a href="#">Ver más</a>
-            </div>
+      <h2>[TÍTULO: MÁS RECURSOS PARA INNOVADORES]</h2>
+      <div class="ebooks-grid">
+        <div class="ebook-item">
+          <div class="cover-placeholder">[PORTADA LIBRO 1]</div>
+          <h4>[TÍTULO LIBRO 1]</h4>
+          <a href="#">Ver más</a>
         </div>
+        <div class="ebook-item">
+          <div class="cover-placeholder">[PORTADA LIBRO 2]</div>
+          <h4>[TÍTULO LIBRO 2]</h4>
+          <a href="#">Ver más</a>
+        </div>
+      </div>
     </section>
 
     <footer class="site-footer">
-        <div class="social-links">
-            <h3>[TÍTULO: CONECTA CON EL AUTOR]</h3>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-linkedin"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-        </div>
-        <p>&copy; 2026 [NOMBRE DEL AUTOR]. Todos los derechos reservados.</p>
+      <div class="social-links">
+        <h3>[TÍTULO: CONECTA CON EL AUTOR]</h3>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-linkedin"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+      </div>
+      <p>&copy; 2026 [NOMBRE DEL AUTOR]. Todos los derechos reservados.</p>
     </footer>
 
     <script src="scripts/script.js"></script>
-</body>
+  </body>
 </html>
