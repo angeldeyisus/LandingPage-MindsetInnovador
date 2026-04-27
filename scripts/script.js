@@ -131,3 +131,48 @@ window.addEventListener("scroll", () => {
     }
   });
 });
+
+
+
+
+
+//Funcion para la seccion de juegos
+function mostrarVista(vista) {
+  const juegos = document.getElementById("juegos");
+  const extra = document.getElementById("extra");
+
+  if (vista === "juego") {
+    juegos.classList.remove("oculto");
+    extra.classList.add("oculto");
+  }
+
+  if (vista === "extra") {
+    juegos.classList.add("oculto");
+    extra.classList.remove("oculto");
+    cargarMicrofrontend();
+  }
+}
+
+
+
+function cargarMicrofrontend() {
+  const container = document.getElementById("micro-app");
+
+  if (!container) return;
+  if (container.dataset.loaded) return;
+
+  import("/components/juegoUnirFrases/UnirFrases.js")
+    .then(module => {
+      module.render(container);
+      container.dataset.loaded = "true";
+    })
+    .catch(err => console.error("Error cargando microfrontend:", err));
+}
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  mostrarVista("juego");
+});

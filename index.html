@@ -225,22 +225,44 @@
       <button class="btn-secondary">Mostrar más</button>
     </section>
 
-    <section id="juegos" class="gamification-section">
+
+    <div class="nav-switch">
+  <button class="btn-primary" onclick="mostrarVista('juego')">
+    Juego de frases
+  </button>
+
+  <button class="btn-secondary" onclick="mostrarVista('extra')">
+    Unir Frases
+  </button>
+</div>
+
+
+    <!-- VISTA 1 -->
+    <section id="juegos" class="gamification-section vista">
+
       <h2>¿CUÁL TE INSPIRA MÁS?</h2>
       <p>Elige tu favorita para continuar.</p>
 
       <div class="vs-container">
         <div class="choice-card">
-          <img src="Img/74.png" alt="Opción A" class="image-placeholder" />
+          <img src="Img/74.png" class="image-placeholder" />
           <button class="btn-primary">¡Me gusta esta!</button>
         </div>
+
         <div class="vs-badge">VS</div>
+
         <div class="choice-card">
-          <img src="Img/40.png" alt="Opción B" class="image-placeholder" />
+          <img src="Img/40.png" class="image-placeholder" />
           <button class="btn-primary">¡Me quedo con esta!</button>
         </div>
       </div>
+
       <button class="btn-secondary">Obtener el libro</button>
+    </section>
+
+    <!-- VISTA 2 (MICROFRONTEND) -->
+    <section id="extra" class="gamification-section oculto">
+      <div id="micro-app"></div>
     </section>
 
     <section id="autor" class="other-ebooks">

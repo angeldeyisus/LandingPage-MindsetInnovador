@@ -547,3 +547,63 @@ body {
 
 
 
+
+/* Seccion de juegos, nuevo juego */
+.oculto {
+  display: none;
+}
+
+.nav-switch {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+
+/* Match Game */
+.match-game {
+  text-align: center;
+}
+
+.game-board {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  margin-top: 2rem;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.match-btn {
+  padding: 12px 16px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  background: white;
+  transition: all 0.2s ease;
+}
+
+.match-btn:hover {
+  transform: scale(1.05);
+}
+
+.match-btn.selected {
+  border: 2px solid #0284C7;
+}
+
+.match-btn.correct {
+  background: #10B981;
+  color: white;
+  border: none;
+}
+
+.match-btn.wrong {
+  background: #EF4444;
+  color: white;
+  border: none;
+}
