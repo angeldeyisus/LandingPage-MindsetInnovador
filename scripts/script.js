@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Variables de control
     let clics = 0;
-    const clicsParaDescarga = 5;
+    const clicsParaDescarga = -1;
     let isOpen = false;
     let mostroFormulario = false; // Nueva bandera para saber si ya lo interrumpimos
 
@@ -77,4 +77,28 @@ document.addEventListener('DOMContentLoaded', () => {
         origamiPaper.classList.remove('is-open');
         isOpen = false;
     });
+});
+
+
+
+
+
+const hero = document.querySelector("#hero");
+const btn = document.querySelector("#floating-ebook-btn");
+
+window.addEventListener("scroll", () => {
+  const heroBottom = hero.getBoundingClientRect().bottom;
+
+  if (heroBottom < 0) {
+    btn.classList.add("show");
+  } else {
+    btn.classList.remove("show");
+  }
+});
+
+// scroll al volver
+btn.addEventListener("click", () => {
+  hero.scrollIntoView({
+    behavior: "smooth"
+  });
 });

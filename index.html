@@ -22,14 +22,16 @@
       </ul>
     </nav>
 
+
+
+    
+
+
     <header id="hero" class="hero-section">
+
+      <ebook-section></ebook-section>
+
       <div class="hero-content">
-        <h1>DESCUBRE EL MINDSET INNOVADOR</h1>
-        <p>
-          Una colección de mas de 100 frases creadas para inspirar creatividad,
-          reflexión y acción en estudiantes, emprendedores, líderes y personas
-          que buscan transformar su entorno.
-        </p>
 
         <div class="origami-wrapper" id="origami-btn">
           <div class="origami-paper" id="origami-paper">
@@ -55,7 +57,7 @@
           id="contador-frases"
           style="margin-top: 15px; font-weight: bold; color: var(--text-light)"
         >
-          Ideas descubiertas: 0 / 5
+          Ideas descubiertas: 0 
         </p>
 
         <div
@@ -252,6 +254,25 @@
       <p>&copy; 2026 [NOMBRE DEL AUTOR]. Todos los derechos reservados.</p>
     </footer>
 
+
+    <button id="floating-ebook-btn">Obtener el libro</button>
+
+
     <script src="scripts/script.js"></script>
+
+    <!-- MicroFrontends -->
+    <!-- seccion Ebook -->
+    <script type="module" src="./components/ebookSection/ebookSection.js"></script>
+
+
+<!--
+    <div id="ebook-float">
+      <ebook-section compact></ebook-section>
+    </div>
+
+-->
+
+
+
   </body>
 </html>
