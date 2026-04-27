@@ -448,6 +448,53 @@ body {
     align-content: center;
 }
 
+#origami-back-container {
+    transition: border-color 0.4s ease, box-shadow 0.4s ease;
+    border-width: 3px;
+    border-style: solid;
+}
+
+#frase-imagen {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* Evita que la imagen se estire o deforme */
+    border-radius: 8px;
+    display: block;
+}
+
+.origami-interactions {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+.interaction-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.interaction-btn i {
+    font-size: 1.2rem;
+}
+
+/* Efectos al pasar el mouse (Hover) */
+.like-btn:hover {
+    color: var(--like-color); /* Rojo */
+}
+
+.share-btn:hover {
+    color: var(--primary-accent); /* Azul */
+}
+
 
 /* Clase que aplicará JS para "desdoblar" */
 .origami-paper.is-open {
