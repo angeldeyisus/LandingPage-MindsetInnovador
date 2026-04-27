@@ -22,6 +22,13 @@
     font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+
 body {
     background-color: var(--bg-color);
     color: var(--text-main);
@@ -103,7 +110,27 @@ body {
 
 
 
+.nav-links a.active {
+  color: var(--primary-accent);
+  font-weight: bold;
+  border-bottom: 2px solid var(--primary-accent);
+}
+
+
 /* 1. HERO & ORIGAMI */
+
+#hero,
+#galeria,
+#juegos,
+#autor {
+  scroll-margin-top: 86px;
+}
+
+#secciones{
+    scroll-margin-top: 40px;
+}
+
+
 .hero-section {
   display: flex;
   align-items: center;
@@ -168,11 +195,48 @@ body {
     border-radius: 8px;
 }
 
+
+
 /* 2. ABOUT EBOOK */
 .about-ebook {
     padding: 4rem 10%;
     text-align: center;
     background: #ffffff;
+}
+
+
+.about-ebook .container {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap; /* clave */
+}
+
+.about-image {
+  flex: 0 0 300px; /* ancho fijo de la imagen */
+}
+
+.about-image img {
+  width: 100%;
+  border-radius: 10px;
+  border: 2px solid black;
+}
+
+.about-ebook .container h2,
+.about-ebook .container p {
+  flex: 1;
+  text-align: left;
+}
+
+.about-text {
+  flex: 1;
+  text-align: left;
+}
+
+
+.about-text p {
+  font-size: 1.1rem; /* prueba 1.8rem, 2.5rem, etc */
+  line-height: 2.0;
 }
 
 /* 3. SECTIONS OVERVIEW */

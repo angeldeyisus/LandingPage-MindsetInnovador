@@ -102,3 +102,32 @@ btn.addEventListener("click", () => {
     behavior: "smooth"
   });
 });
+
+
+
+
+
+// Para que la barra de navegacion este seleccionada en la seccion actual
+const sections = document.querySelectorAll("section, header");
+const navLinks = document.querySelectorAll(".nav-links a");
+
+window.addEventListener("scroll", () => {
+  let current = "";
+
+  sections.forEach((section) => {
+    const rect = section.getBoundingClientRect();
+
+    // cuando la sección está visible (ajusta 100 a tu navbar)
+    if (rect.top <= 86 && rect.bottom >= 86) {
+      current = section.getAttribute("id");
+    }
+  });
+
+  navLinks.forEach((link) => {
+    link.classList.remove("active");
+
+    if (link.getAttribute("href") === `#${current}`) {
+      link.classList.add("active");
+    }
+  });
+});
