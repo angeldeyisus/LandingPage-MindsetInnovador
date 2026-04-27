@@ -1,82 +1,95 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Array simulando las frases
-    const frasesInnovacion = [
-        "La innovación distingue a los líderes de los seguidores.",
-        "No puedes agotar la creatividad. Mientras más la usas, más tienes.",
-        "El mayor riesgo es no correr ningún riesgo.",
-        "Si buscas resultados distintos, no hagas siempre lo mismo.",
-        "La creatividad es la inteligencia divirtiéndose.",
-        "Un problema bien planteado es un problema medio resuelto.",
-        "La innovación nace de la curiosidad, no de la certeza.",
-        "Falla rápido, aprende más rápido."
+    // 1. Definición de las Secciones, Rangos de Imágenes y Colores
+    // Nota: Ajusté la sección 1 a terminar en 31 para que no choque con la sección 2.
+    const secciones = [
+        { id: 1, min: 8, max: 31, color: "#10B981" },   // Verde (La Semilla)
+        { id: 2, min: 34, max: 61, color: "#F59E0B" },  // Amarillo (Ideación)
+        { id: 3, min: 64, max: 85, color: "#3B82F6" },  // Azul (En Acción)
+        { id: 4, min: 88, max: 106, color: "#FF5C35" }, // Naranja/Rojo (Lanzar)
+        { id: 5, min: 109, max: 125, color: "#8B5CF6" } // Morado (Aprendizaje)
     ];
+
+    // 2. Generar un arreglo con todos los números de imagen válidos
+    let imagenesValidas = [];
+    secciones.forEach(sec => {
+        for (let i = sec.min; i <= sec.max; i++) {
+            imagenesValidas.push({ numero: i, color: sec.color, seccion: sec.id });
+        }
+    });
 
     // Variables de control
     let clics = 0;
-    const clicsParaDescarga = -1;
+    const clicsParaDescarga = 5;
     let isOpen = false;
-    let mostroFormulario = false; // Nueva bandera para saber si ya lo interrumpimos
+    let mostroFormulario = false;
 
     // Elementos del DOM
     const origamiWrapper = document.getElementById('origami-btn');
     const origamiPaper = document.getElementById('origami-paper');
-    const textoFrase = document.getElementById('frase-texto');
+    const origamiBack = document.getElementById('origami-back-container');
+    const imagenFrase = document.getElementById('frase-imagen');
     const contadorTexto = document.getElementById('contador-frases');
     const downloadTrigger = document.getElementById('download-trigger');
-    const btnAhoraNo = document.getElementById('btn-ahora-no'); // Nuevo botón
 
-    // Lógica al hacer clic en el Origami
+    // 3. Lógica principal al hacer clic
     origamiWrapper.addEventListener('click', () => {
-        // Si está cerrado, lo abrimos y mostramos una frase
         if (!isOpen) {
-            // Elegir frase aleatoria
-            const fraseAleatoria = frasesInnovacion[Math.floor(Math.random() * frasesInnovacion.length)];
-            textoFrase.textContent = `"${fraseAleatoria}"`;
+            // Elegir una imagen PNG al azar
+            const seleccionAleatoria = imagenesValidas[Math.floor(Math.random() * imagenesValidas.length)];
             
+            // Asignar la ruta de la imagen (Asegúrate de que la carpeta se llame "imagenes")
+            imagenFrase.src = `img/${seleccionAleatoria.numero}.png`;
+            imagenFrase.style.display = 'block';
+
+            // Aplicar el color correspondiente a la sección
+            origamiBack.style.borderColor = seleccionAleatoria.color;
+            origamiBack.style.boxShadow = `0 10px 30px ${seleccionAleatoria.color}33`; // Sombra suave del color
+
             // Animación de desdoblar
             origamiPaper.classList.add('is-open');
             clics++;
             
-            // Actualizar texto del contador
+            // Lógica del contador
             if (!mostroFormulario && clics <= clicsParaDescarga) {
                 contadorTexto.textContent = `Ideas descubiertas: ${clics} / ${clicsParaDescarga}`;
             } else {
-                contadorTexto.textContent = `Ideas descubiertas: ${clics}`; // Contador infinito
+                contadorTexto.textContent = `Ideas descubiertas: ${clics}`;
             }
 
             isOpen = true;
 
-            // Revisar si llegamos a 5 clics por primera vez
+            // Revisar límite para el formulario
             if (clics === clicsParaDescarga && !mostroFormulario) {
                 setTimeout(() => {
-                    // Ocultar el origami y mostrar formulario
                     origamiWrapper.style.display = 'none';
                     contadorTexto.style.display = 'none';
                     downloadTrigger.style.display = 'block';
-                    mostroFormulario = true; // Marcamos que ya se le ofreció descargar
+                    mostroFormulario = true;
                 }, 1500); 
             }
         } else {
-            // Si está abierto, lo volvemos a doblar
+            // Doblar el papel (cerrar)
             origamiPaper.classList.remove('is-open');
+            // Ocultar imagen brevemente para que no se vea al girar
+            setTimeout(() => { 
+              imagenFrase.style.display = 'none';
+            }, 300);
             isOpen = false;
         }
     });
 
-    // Lógica para el botón "Ahora no"
-    btnAhoraNo.addEventListener('click', () => {
-        // Ocultar el formulario
-        downloadTrigger.style.display = 'none';
-        
-        // Volver a mostrar el origami y el contador
-        origamiWrapper.style.display = 'block';
-        contadorTexto.style.display = 'block';
-        contadorTexto.textContent = `Ideas descubiertas: ${clics}`;
-        
-        // Doblar el papel para que esté listo para el siguiente clic
-        origamiPaper.classList.remove('is-open');
-        isOpen = false;
-    });
+    // 4. Lógica del botón "Ahora no"
+    if (btnAhoraNo) {
+        btnAhoraNo.addEventListener('click', () => {
+            downloadTrigger.style.display = 'none';
+            origamiWrapper.style.display = 'block';
+            contadorTexto.style.display = 'block';
+            contadorTexto.textContent = `Ideas descubiertas: ${clics}`;
+            origamiPaper.classList.remove('is-open');
+            imagenFrase.style.display = 'none';
+            isOpen = false;
+        });
+    }
 });
 
 
