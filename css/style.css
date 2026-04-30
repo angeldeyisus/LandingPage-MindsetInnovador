@@ -654,3 +654,86 @@ body {
   color: white;
   border: none;
 }
+
+/* ===== AUTOR ===== */
+.autor-section {
+    padding: 80px 20px;
+    background: white; /* oscuro elegante */
+}
+
+.autor-container {
+    max-width: 1100px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    flex-wrap: wrap;
+}
+
+.autor-img img {
+    width: 460px;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+    object-fit: cover;
+}
+
+.autor-info {
+    flex: 1;
+    color: black;
+}
+
+.autor-info h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: black;
+}
+
+.autor-info h4 {
+    color: #10B981;
+    margin-bottom: 15px;
+}
+
+.autor-info p {
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.autor-datos {
+    margin-bottom: 25px;
+    padding-left: 20px;
+}
+
+.autor-datos li {
+    margin-bottom: 8px;
+    list-style: "✔ ";
+}
+
+
+.botonesAutor:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 221, 0, 0.4);
+}
+
+/* botón principal */
+.btn-coffee {
+    background: #FFDD00;
+    color: #000;
+    border: none;
+    padding: 12px 22px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* botón secundario */
+.btn-contactame {
+    background: #FFDD00;
+    color: #000;
+    border: none;
+    padding: 12px 22px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}

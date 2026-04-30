@@ -203,3 +203,23 @@ function cargarMicrofrontend() {
 document.addEventListener("DOMContentLoaded", () => {
   mostrarVista("juego");
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+    const btnCoffee = document.querySelector(".btn-coffee");
+
+    if (btnCoffee) {
+        btnCoffee.addEventListener("click", () => {
+            alert("Gracias por tu interés 🙌\nPróximamente podrás apoyar al autor.");
+        });
+    }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    const btnCoffee = document.querySelector(".btn-contactame");
+
+    if (btnCoffee) {
+        btnCoffee.addEventListener("click", () => {
+            alert("Este es mi correo");
+        });
+    }
+});
