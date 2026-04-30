@@ -30,6 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const imagenFrase = document.getElementById('frase-imagen');
     const contadorTexto = document.getElementById('contador-frases');
     const downloadTrigger = document.getElementById('download-trigger');
+    const btnAhoraNo = document.getElementById('btn-ahora-no');
 
     // 3. Lógica principal al hacer clic
     origamiWrapper.addEventListener('click', () => {
@@ -81,13 +82,26 @@ document.addEventListener('DOMContentLoaded', () => {
     // 4. Lógica del botón "Ahora no"
     if (btnAhoraNo) {
         btnAhoraNo.addEventListener('click', () => {
+            // Ocultar formulario
             downloadTrigger.style.display = 'none';
+
+            // Mostrar origami otra vez
             origamiWrapper.style.display = 'block';
             contadorTexto.style.display = 'block';
-            contadorTexto.textContent = `Ideas descubiertas: ${clics}`;
-            origamiPaper.classList.remove('is-open');
+
+            // REINICIAR VARIABLES
+            clics = 0;
+            mostroFormulario = false;
+
+            // Reset visual
+            contadorTexto.textContent = `Ideas descubiertas: 0`;
             imagenFrase.style.display = 'none';
+            origamiPaper.classList.remove('is-open');
             isOpen = false;
+
+            // (opcional) quitar color anterior
+            origamiBack.style.borderColor = "";
+            origamiBack.style.boxShadow = "";
         });
     }
 });
