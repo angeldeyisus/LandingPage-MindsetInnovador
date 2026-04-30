@@ -737,3 +737,116 @@ body {
     cursor: pointer;
     transition: 0.3s;
 }
+
+
+
+/* ===== SECCIÓN GENERAL ===== */
+.sections-overview {
+    padding: 80px 5%;
+    text-align: center;
+}
+
+.sections-overview h2 {
+    margin-bottom: 40px;
+}
+
+/* ===== CONTENEDOR ===== */
+.sections-accordion {
+    max-width: 800px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+/* ===== ITEM ===== */
+.accordion-item {
+    border-radius: 12px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+    border-left: 5px solid transparent;
+    transition: all 0.3s ease;
+}
+
+/* ===== HEADER ===== */
+.accordion-header {
+    padding: 18px 20px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: left;
+    background: #f9fafb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.05rem;
+    transition: 0.25s;
+}
+
+.accordion-header:hover {
+    background: #f1f5f9;
+}
+
+/* ===== CONTENIDO ===== */
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    text-align: left;
+    padding: 0 20px;
+    transition: all 0.35s ease;
+}
+
+.accordion-content p {
+    margin: 10px 0;
+    color: var(--text-light);
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+.accordion-content span {
+    display: block;
+    margin-top: 12px;
+    font-weight: 600;
+}
+
+/* ===== ACTIVO ===== */
+.accordion-item.active {
+    box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+    transform: translateY(-2px);
+}
+
+.accordion-item.active .accordion-content {
+    max-height: 260px;
+    padding: 12px 20px 20px;
+}
+
+.accordion-header::after {
+    content: "›";
+    font-size: 1.4rem;
+    transition: transform 0.3s ease;
+}
+
+.accordion-item.active .accordion-header::after {
+    transform: rotate(90deg);
+}
+
+/* ===== COLORES POR SECCIÓN ===== */
+.accordion-item.color-sec-1 {
+    border-left-color: var(--c-sec3); /* verde */
+}
+
+.accordion-item.color-sec-2 {
+    border-left-color: var(--c-sec2); /* amarillo */
+}
+
+.accordion-item.color-sec-3 {
+    border-left-color: var(--c-sec4); /* azul */
+}
+
+.accordion-item.color-sec-4 {
+    border-left-color: var(--c-sec1); /* naranja */
+}
+
+.accordion-item.color-sec-5 {
+    border-left-color: var(--c-sec5); /* púrpura */
+}
