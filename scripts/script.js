@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Variables de control
     let clics = 0;
-    const clicsParaDescarga = 5;
+    const clicsParaDescarga = -1;
     let isOpen = false;
     let mostroFormulario = false;
 
@@ -189,13 +189,12 @@ function cargarMicrofrontend() {
   if (container.dataset.loaded) return;
 
   import("/components/juegoUnirFrases/UnirFrases.js")
-    .then(module => {
-      module.render(container);
+    .then(() => {
+      container.innerHTML = `<match-game></match-game>`; // ✅ usamos el componente
       container.dataset.loaded = "true";
     })
     .catch(err => console.error("Error cargando microfrontend:", err));
 }
-
 
 
 

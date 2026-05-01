@@ -1,25 +1,24 @@
-export function render(container) {
-  const pairs = [
-    { left: "Innovar es sembrar preguntas", right: "donde otros siembran respuestas" },
-    { left: "El fracaso es un maestro caro,", right: "pero sus lecciones duran toda la vida" },
-    { left: "Cada innovación es semilla:", right: "algunas germinan, otras fertilizan futuros intentos" },
-    { left: "La mejor métrica de impacto", right: "es la sonrisa del usuario que percibe el valor entregado" },
-    { left: "El final de una innovación", right: "es el comienzo de la siguiente" },
-    { left: "El innovador no busca el aplauso,", right: "busca el impacto positivo" }
+const pairs = [
+  { left: "Innovar es sembrar preguntas", right: "donde otros siembran respuestas" },
+  { left: "El fracaso es un maestro caro,", right: "pero sus lecciones duran toda la vida" },
+  { left: "Cada innovación es semilla:", right: "algunas germinan, otras fertilizan futuros intentos" },
+  { left: "La mejor métrica de impacto", right: "es la sonrisa del usuario que percibe el valor entregado" },
+  { left: "El final de una innovación", right: "es el comienzo de la siguiente" },
+  { left: "El innovador no busca el aplauso,", right: "busca el impacto positivo" }
+];
 
-  ];
-
+function render(container) {
   let selectedLeft = null;
   let selectedRight = null;
-
   const states = new Map();
 
   container.innerHTML = `
     <div class="match-game">
       <h2>Conecta las frases</h2>
+      <p>Selecciona una frase de la izquierda y encuentra su complemento correcto</p>
 
       <button class="btn-secondary" id="restart-game">
-        🔄
+        Reiniciar 🔄
       </button>
 
       <div class="game-board">
@@ -32,7 +31,6 @@ export function render(container) {
   const leftCol = container.querySelector(".left");
   const rightCol = container.querySelector(".right");
 
-  // 🔀 shuffle correcto (Fisher-Yates)
   function shuffle(array) {
     const arr = [...array];
     for (let i = arr.length - 1; i > 0; i--) {
@@ -43,8 +41,8 @@ export function render(container) {
   }
 
   function clearSelection(side) {
-    const buttons = container.querySelectorAll(`.${side} .match-btn`);
-    buttons.forEach(btn => btn.classList.remove("selected"));
+    container.querySelectorAll(`.${side} .match-btn`)
+      .forEach(btn => btn.classList.remove("selected"));
   }
 
   function resetSelection() {
@@ -56,9 +54,7 @@ export function render(container) {
     if (!selectedLeft || !selectedRight) return;
 
     const isMatch = pairs.some(
-      p =>
-        p.left === selectedLeft.text &&
-        p.right === selectedRight.text
+      p => p.left === selectedLeft.text && p.right === selectedRight.text
     );
 
     if (isMatch) {
@@ -107,32 +103,20 @@ export function render(container) {
   function initGame() {
     leftCol.innerHTML = "";
     rightCol.innerHTML = "";
-
     selectedLeft = null;
     selectedRight = null;
     states.clear();
 
-    // 🔥 1. mezclar TODOS los pares
-    const shuffledPairs = shuffle(pairs);
+    const shuffledPairs = shuffle(pairs).slice(0, 4);
 
-    // 🔥 2. tomar solo 4
-    const selectedPairs = shuffledPairs.slice(0, 4);
+    const leftItems = shuffle(shuffledPairs.map(p => p.left));
+    const rightItems = shuffle(shuffledPairs.map(p => p.right));
 
-    // 🔥 3. separar izquierda y derecha
-    const leftItems = selectedPairs.map(p => p.left);
-    const rightItems = selectedPairs.map(p => p.right);
-
-    // 🔀 mezclar lados independiente
-    const shuffledLeft = shuffle(leftItems);
-    const shuffledRight = shuffle(rightItems);
-
-    // render izquierda
-    shuffledLeft.forEach(text => {
+    leftItems.forEach(text => {
       leftCol.appendChild(createButton(text, "left"));
     });
 
-    // render derecha
-    shuffledRight.forEach(text => {
+    rightItems.forEach(text => {
       rightCol.appendChild(createButton(text, "right"));
     });
   }
@@ -143,3 +127,24 @@ export function render(container) {
   initGame();
 }
 
+/* 🔥 Web Component */
+class MatchGame extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: "open" });
+  }
+
+  connectedCallback() {
+    this.shadowRoot.innerHTML = `
+      <link rel="stylesheet" href="./components/juegoUnirFrases/unirFrases.css">
+      <div id="game"></div>
+    `;
+
+    const container = this.shadowRoot.querySelector("#game");
+    render(container);
+  }
+}
+
+if (!customElements.get("match-game")) {
+  customElements.define("match-game", MatchGame);
+}

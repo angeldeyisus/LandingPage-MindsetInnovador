@@ -1,0 +1,120 @@
+class TimelineAccordion extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: "open" });
+  }
+
+  connectedCallback() {
+    this.shadowRoot.innerHTML = `
+      <link rel="stylesheet" href="./components/timelineAccordion/timelineAccordion.css">
+      
+      <div class="container">
+        <h2>Fases del proceso innovador</h2>
+
+        <div class="accordion">
+
+          <!-- 1 -->
+          <div class="accordion-item" data-bg="#eef6ff">
+            <div class="accordion-header">🌱 Antes de innovar: La semilla</div>
+            <div class="accordion-content">
+              <p>
+                Toda innovación comienza antes de existir. Nace en la curiosidad,
+                en cuestionar lo establecido y en mirar donde otros no miran.
+              </p>
+              <p>
+                Aquí no buscas respuestas, buscas mejores preguntas.
+                Es el momento de observar, empatizar y abrir posibilidades.
+              </p>
+              <span>La innovación empieza en cómo decides ver el mundo 👀</span>
+            </div>
+          </div>
+
+          <!-- 2 -->
+          <div class="accordion-item" data-bg="#fff7ed">
+            <div class="accordion-header">⚡ Encender la chispa</div>
+            <div class="accordion-content">
+              <p>
+                Las ideas comienzan a tomar forma. Es el espacio del caos creativo,
+                donde experimentar vale más que acertar.
+              </p>
+              <p>
+                Aquí se conecta, se prueba, se rompe y se vuelve a intentar.
+              </p>
+              <span>Las mejores ideas nacen cuando te permites fallar ⚡</span>
+            </div>
+          </div>
+
+          <!-- 3 -->
+          <div class="accordion-item" data-bg="#f0fdf4">
+            <div class="accordion-header">🔍 Desarrollo y validación</div>
+            <div class="accordion-content">
+              <p>
+                La idea sale al mundo y deja de ser tuya. Ahora importa lo que otros sienten.
+              </p>
+              <p>
+                Validar no es confirmar, es descubrir cómo mejorar.
+              </p>
+              <span>Escuchar vale más que explicar 🔍</span>
+            </div>
+          </div>
+
+          <!-- 4 -->
+          <div class="accordion-item" data-bg="#ecfdf5">
+            <div class="accordion-header">🚀 Implementación</div>
+            <div class="accordion-content">
+              <p>
+                La innovación se convierte en impacto cuando se implementa.
+              </p>
+              <p>
+                Aquí es donde transforma realidades.
+              </p>
+              <span>El cambio se invita, no se impone 🤝</span>
+            </div>
+          </div>
+
+          <!-- 5 -->
+          <div class="accordion-item" data-bg="#f5f3ff">
+            <div class="accordion-header">🔄 Aprendizaje</div>
+            <div class="accordion-content">
+              <p>
+                Cada innovación abre la puerta a la siguiente.
+              </p>
+              <p>
+                Reflexionar convierte la experiencia en crecimiento.
+              </p>
+              <span>El fracaso también construye 🔄</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    `;
+
+    this.initLogic();
+  }
+
+  initLogic() {
+    const items = this.shadowRoot.querySelectorAll(".accordion-item");
+    const host = this.shadowRoot.host;
+
+    items.forEach(item => {
+      item.addEventListener("click", () => {
+        const isActive = item.classList.contains("active");
+
+        items.forEach(i => i.classList.remove("active"));
+
+        if (!isActive) {
+          item.classList.add("active");
+
+          // 🔥 cambiar fondo dinámico
+          const bg = item.getAttribute("data-bg");
+          host.style.background = bg;
+        }
+      });
+    });
+  }
+}
+
+if (!customElements.get("timeline-accordion")) {
+  customElements.define("timeline-accordion", TimelineAccordion);
+}

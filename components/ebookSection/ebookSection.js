@@ -34,13 +34,13 @@ class ebookSection extends HTMLElement {
                 : `
                   <input type="text" placeholder="Tu nombre ">
                   <input type="email" placeholder="Email">
-                  <button>Obtener E-Book</button>
+                  <button>Descarga e-book gratis</button>
                 `
             }
           </div>
 
             <div class="footer ${isCompact ? "hide" : ""}">
-              ➤ Recibirás un email de confirmación.
+              
             </div>
           </div>
         </div>

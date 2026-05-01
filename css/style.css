@@ -351,6 +351,7 @@ body {
     padding: 5rem 5%;
     text-align: center;
     background: #ffffff;
+    border: 4px solid #0284C7;
 }
 
 .vs-container {
