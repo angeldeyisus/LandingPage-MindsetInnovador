@@ -226,7 +226,7 @@ body {
 .hero-section {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   gap: 60px;
   min-height: 90vh;
   padding: 60px 6%;
@@ -884,8 +884,8 @@ body {
 
 /* --- ANIMACIÓN ESTILO ORIGAMI / PLEGADO --- */
 .origami-wrapper {
-    width: 360px;
-    height: 360px;
+    width: 450px;
+    height: 450px;
     margin: 2rem auto 0 auto;
     perspective: 1000px;
     cursor: pointer;
@@ -933,7 +933,7 @@ body {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    padding: 1.5rem;
+    padding: 1rem;
     border: 3px solid var(--primary-accent);
     border-radius: 16px;
     background: white;
@@ -1025,8 +1025,8 @@ body {
 }
 
 #frase-imagen {
-    max-width: 90%;
-    max-height: 60%;
+    max-width: 100%;
+    max-height: 80%;
     object-fit: contain;
     border-radius: 8px;
 }
