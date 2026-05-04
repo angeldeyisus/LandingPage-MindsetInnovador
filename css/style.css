@@ -666,8 +666,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 3rem;
-    margin: 4rem 0;
+    gap: 4rem;
+    margin: 3rem 0;
     flex-wrap: wrap;
     position: relative;
 }
@@ -906,7 +906,38 @@ body {
     transform-style: preserve-3d;
 }
 
-.origami-front, .origami-back {
+.origami-container {
+    width: 600px;   
+    height: 600px;
+    max-width: 100%; 
+    align-content: center;
+}
+
+#origami-back-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1.5rem;
+}
+
+.frase-img-wrapper {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    width: 100%;
+}
+
+#frase-imagen {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* Evita que la imagen se estire o deforme */
+    border-radius: 8px;
+    display: block;
+}
+
+.origami-interactions {
     width: 100%;
     height: 100%;
     position: absolute;
@@ -914,31 +945,20 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    padding: 2rem;
-    border-radius: 20px;
+    gap: 8px; /* Espacio entre el icono y el texto */
+    cursor: pointer;
+    font-size: 1rem;
+    color: #64748B; /* Color gris discreto por defecto */
+    transition: color 0.3s ease;
     font-weight: 500;
 }
 
-.origami-front {
-    background: linear-gradient(135deg, #ffffff 0%, #F5F8FC 100%);
-    border: 3px dashed var(--secondary-accent);
-    color: var(--text-main);
-    font-size: 1.1rem;
-    box-shadow: 0 10px 35px rgba(0, 102, 217, 0.1), inset 0 1px 0 rgba(255,255,255,0.5);
+.interaction-btn i, .like-btn:hover span{
+    color: #EF4444; /* Se pone rojo al pasar el cursor */
 }
 
-.origami-front span {
-    text-align: center;
-    margin-top: 1rem;
-    font-weight: 600;
-}
-
-.origami-back {
-    background: linear-gradient(135deg, #F5F8FC 0%, #E0F2FF 100%);
-    border: 3px solid var(--primary-accent);
-    transform: rotateY(180deg);
-    box-shadow: 0 10px 35px rgba(0, 102, 217, 0.15), inset 0 1px 0 rgba(255,255,255,0.8);
+.share-btn:hover i, .share-btn:hover span {
+    color: #0284C7; /* Se pone azul al pasar el cursor */
 }
 
 .origami-paper.is-open {
@@ -964,6 +984,103 @@ body {
     font-size: 2.2rem;
     font-style: italic;
     color: var(--text-main);
+}
+
+/* --- POPUP / MODAL DE COMPARTIR --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 23, 42, 0.7); /* Fondo oscuro semitransparente */
+    backdrop-filter: blur(4px); /* Efecto cristal moderno */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999; /* Asegura que esté por encima de TODO */
+}
+
+.modal-content {
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    animation: modalFadeIn 0.3s ease; /* Animación de entrada suave */
+}
+
+@keyframes modalFadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 1.8rem;
+    color: var(--text-light);
+    cursor: pointer;
+    transition: color 0.2s;
+    line-height: 1;
+}
+
+.close-modal:hover {
+    color: var(--like-color); /* Rojo al pasar el mouse */
+}
+
+.preview-container {
+    width: 100%;
+    height: 250px;
+    background: #F8FAFC;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 1px solid #E2E8F0;
+}
+
+#share-preview-img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.social-share-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.social-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: white;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.social-btn:hover {
+    transform: translateY(-5px); /* Se levanta un poquito */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Colores de las redes sociales */
+.whatsapp-btn { background: #25D366; }
+.facebook-btn { background: #1877F2; }
+.instagram-btn { 
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); 
 }
 
 

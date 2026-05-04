@@ -48,7 +48,19 @@
               <span>Toca para desdoblar una idea</span>
             </div>
             <div class="origami-back" id="origami-back-container">
-              <img id="frase-imagen" src="" alt="Frase de innovación" style="display: none;">
+              <div class="frase-imagen-wrapper">
+                <img id="frase-imagen" src="" alt="Frase de innovación" style="display: none;">
+              </div>
+              <div class="origami-interactions" id="origami-interactions" style="display: none;">
+                <div class="interaction-btn like-btn">
+                  <i class="far fa-heart heart-icon"></i>
+                  <span class="like-count">0</span>
+                </div>
+                <div class="interaction-btn share-btn">
+                  <i class="fas fa-share-alt"></i>
+                  <span>Compartir</span>
+              </div>
+              </div>
             </div>
           </div>
         </div>
@@ -58,6 +70,40 @@
         >
           Ideas descubiertas: 0 
         </p>
+
+        <!-- POP-UP DE COMPARTIR -->
+<div id="share-modal" class="modal-overlay" style="display: none;">
+    <div class="modal-content">
+        <!-- Botón para cerrar (X) -->
+        <span class="close-modal" id="close-share-modal">&times;</span>
+        
+        <h3>Compartir Frase</h3>
+        <p style="margin-bottom: 1rem; color: var(--text-light); font-size: 0.9rem;">
+            ¡Inspira a otros con esta idea!
+        </p>
+        
+        <!-- Vista previa de la imagen -->
+        <div class="preview-container">
+            <img id="share-preview-img" src="" alt="Vista previa de la frase">
+        </div>
+        
+        <!-- Botones de redes sociales -->
+        <div class="social-share-buttons">
+            <!-- WhatsApp -->
+            <a href="#" class="social-btn whatsapp-btn" title="Compartir en WhatsApp">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+            <!-- Facebook -->
+            <a href="#" class="social-btn facebook-btn" title="Compartir en Facebook">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <!-- Instagram -->
+            <a href="#" class="social-btn instagram-btn" title="Compartir en Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+        </div>
+    </div>
+</div>
 
         <div
           class="download-trigger"
