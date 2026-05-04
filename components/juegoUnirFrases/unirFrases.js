@@ -4,7 +4,7 @@ const pairs = [
   { left: "Cada innovación es semilla:", right: "algunas germinan, otras fertilizan futuros intentos" },
   { left: "La mejor métrica de impacto", right: "es la sonrisa del usuario que percibe el valor entregado" },
   { left: "El final de una innovación", right: "es el comienzo de la siguiente" },
-  { left: "El innovador no busca el aplauso,", right: "busca el impacto positivo" }
+  { left: "El innovador no busca el aplauso,", right: "busca el impacto positivo" },
   
 
   { left: "El primer paso no es tener una idea,", right: "es tener una pregunta" },
