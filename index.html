@@ -28,45 +28,62 @@
     
 
 
-    <header id="hero" class="hero-section">
+  <header id="hero" class="hero-section">
 
-      <div class="hero-content">
+  <!-- IZQUIERDA: ORIGAMI -->
+  <div class="hero-left">
 
-        <div class="origami-wrapper" id="origami-btn">
-          <div class="origami-paper" id="origami-paper">
-            <div class="origami-front">
-              <i
-                class="fas fa-paper-plane"
-                style="
-                  font-size: 3rem;
-                  margin-bottom: 1rem;
-                  color: var(--primary-accent);
-                "
-              ></i>
-              <span>Toca para desdoblar una idea</span>
-            </div>
-            <div class="origami-back" id="origami-back-container">
-              <img id="frase-imagen" src="" alt="Frase de innovación">
-              <div class="origami-like-panel">
-                <button id="origami-like-btn" class="btn-secondary origami-like-btn" type="button">
-                  <i class="far fa-heart"></i> Me gusta
-                </button>
-                <button id="origami-share-btn" class="btn-secondary origami-share-btn" type="button">
-                  <i class="fas fa-share-alt"></i> Compartir
-                </button>
-                <span id="origami-like-count" class="origami-like-count">0 likes</span>
-              </div>
-            </div>
+    <div class="origami-wrapper" id="origami-btn">
+      <div class="origami-paper" id="origami-paper">
+
+        <div class="origami-front">
+          <i class="fas fa-paper-plane"
+             style="font-size: 3rem; margin-bottom: 1rem; color: var(--primary-accent);">
+          </i>
+          <span>Toca para desdoblar una idea</span>
+        </div>
+
+        <div class="origami-back" id="origami-back-container">
+          <img id="frase-imagen" src="" alt="Frase de innovación">
+
+          <div class="origami-like-panel">
+            <button id="origami-like-btn"
+                    class="btn-secondary origami-like-btn"
+                    type="button">
+              <i class="far fa-heart"></i> Me gusta
+            </button>
+
+            <button id="origami-share-btn"
+                    class="btn-secondary origami-share-btn"
+                    type="button">
+              <i class="fas fa-share-alt"></i> Compartir
+            </button>
+
+            <span id="origami-like-count"
+                  class="origami-like-count">
+              0 likes
+            </span>
           </div>
         </div>
-        <p
-          id="contador-frases"
-          style="margin-top: 15px; font-weight: bold; color: var(--text-light)"
-        >
-          Ideas descubiertas: 0 
-        </p>
+
       </div>
-    </header>
+    </div>
+
+    <p id="contador-frases"
+       style="margin-top: 15px; font-weight: bold; color: var(--text-light)">
+      Ideas descubiertas: 0
+    </p>
+
+  </div>
+
+  <!-- DERECHA: EBOOK -->
+  <div class="hero-right">
+    <ebook-section></ebook-section>
+  </div>
+
+</header>
+
+
 
     <!-- Modal del E-book con formulario -->
     <div id="ebook-modal" class="modal-overlay">

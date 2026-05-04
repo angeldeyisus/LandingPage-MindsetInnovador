@@ -467,19 +467,11 @@ if (btnLibro) {
 
 // Funciones del modal del ebook
 function openEbookModal() {
-  const modal = document.getElementById('ebook-modal');
-  if (modal) {
-    modal.style.display = 'flex';
-    document.body.style.overflow = 'hidden'; // Previene scroll del fondo
-  }
+  document.getElementById("ebook-modal").classList.add("active");
 }
 
 function closeEbookModal() {
-  const modal = document.getElementById('ebook-modal');
-  if (modal) {
-    modal.style.display = 'none';
-    document.body.style.overflow = 'auto'; // Restaura scroll
-  }
+  document.getElementById("ebook-modal").classList.remove("active");
 }
 
 function submitEbookForm() {
