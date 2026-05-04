@@ -252,17 +252,63 @@ body {
   z-index: 1;
 }
 
-.hero-content h1 {
-    font-size: 3rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    line-height: 1.2;
-    margin-bottom: 2rem;
-    background: linear-gradient(135deg, var(--primary-accent) 0%, var(--secondary-accent) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+/* Sección de introducción del Ebook */
+.ebook-intro-section {
+  padding: 80px 6%;
+  background: var(--bg-light);
+  position: relative;
+}
+
+.ebook-intro-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--primary-accent), transparent);
+}
+
+.ebook-intro-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 60px;
+}
+
+.ebook-intro-image {
+  width: 280px;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: var(--shadow-lg);
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+.ebook-intro-image:hover {
+  transform: scale(1.03);
+}
+
+.ebook-intro-text {
+  flex: 1;
+}
+
+.ebook-intro-text h2 {
+  font-size: 2.8rem;
+  line-height: 1.2;
+  margin-bottom: 2rem;
+  background: linear-gradient(135deg, var(--primary-accent) 0%, var(--secondary-accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.ebook-intro-text p {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: var(--text-main);
+  text-align: justify;
 }
 
 @media (max-width: 1024px) {
@@ -276,6 +322,29 @@ body {
   
   .hero-section::before {
     display: none;
+  }
+
+  .ebook-intro-section {
+    padding: 60px 5%;
+  }
+
+  .ebook-intro-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 40px;
+  }
+
+  .ebook-intro-image {
+    width: 220px;
+  }
+
+  .ebook-intro-text h2 {
+    font-size: 2.2rem;
+  }
+
+  .ebook-intro-text p {
+    text-align: center;
+    font-size: 1rem;
   }
 }
 
