@@ -1,6 +1,5 @@
 ﻿document.addEventListener('DOMContentLoaded', () => {
-    // 1. DefiniciÃ³n de las Secciones, Rangos de ImÃ¡genes y Colores
-    // Nota: AjustÃ© la secciÃ³n 1 a terminar en 31 para que no choque con la secciÃ³n 2.
+
     const secciones = [
         { id: 1, min: 8, max: 31, color: "#10B981" },   // Verde (La Semilla)
         { id: 2, min: 34, max: 61, color: "#F59E0B" },  // Amarillo (IdeaciÃ³n)
@@ -35,27 +34,27 @@
     const origamiLikeBtn = document.getElementById('origami-like-btn');
     const origamiLikeCount = document.getElementById('origami-like-count');
 
-    // 3. LÃ³gica principal al hacer clic
+    // 3. Logica principal al hacer clic
     origamiWrapper.addEventListener('click', () => {
         if (!isOpen) {
             // Elegir una imagen PNG al azar
             const seleccionAleatoria = imagenesValidas[Math.floor(Math.random() * imagenesValidas.length)];
             
-            // Asignar la ruta de la imagen (AsegÃºrate de que la carpeta se llame "Img")
+            // Asignar la ruta de la imagen 
             imagenFrase.src = `Img/${seleccionAleatoria.numero}.png`;
             imagenFrase.style.display = 'block';
 
-            // Aplicar el color correspondiente a la secciÃ³n
+            // Aplicar el color correspondiente a la seccionn
             origamiBack.style.borderColor = seleccionAleatoria.color;
             origamiBack.style.boxShadow = `0 10px 30px ${seleccionAleatoria.color}33`; // Sombra suave del color
 
-            // AnimaciÃ³n de desdoblar
+            // Animacion de desdoblar
             origamiPaper.classList.add('is-open');
             clics++;
             currentOrigamiImageNumber = seleccionAleatoria.numero;
             updateOrigamiLikeInfo();
             
-            // LÃ³gica del contador
+            // Lpgica del contador
             if (!mostroFormulario && clics <= clicsParaDescarga) {
                 contadorTexto.textContent = `Ideas descubiertas: ${clics} / ${clicsParaDescarga}`;
             } else {
@@ -64,7 +63,7 @@
 
             isOpen = true;
 
-            // Revisar lÃ­mite para el formulario
+            // Revisar limite para el formulario
             if (clics === clicsParaDescarga && !mostroFormulario) {
                 setTimeout(() => {
                     origamiWrapper.style.display = 'none';
@@ -84,7 +83,7 @@
         }
     });
 
-    // 4. LÃ³gica del botÃ³n "Ahora no"
+    // 4. Logica del boton "Ahora no"
     if (btnAhoraNo) {
         btnAhoraNo.addEventListener('click', () => {
             // Ocultar formulario
@@ -110,7 +109,7 @@
         });
     }
 
-    // 5. VotaciÃ³n y galerÃ­a ordenada por likes
+    // 5. Votacionn y galeri­a de mas valoradas ordenada por likes
     const galleryImage = document.getElementById('gallery-image');
     const galleryLikeCount = document.getElementById('gallery-like-count');
     const galleryMoreBtn = document.getElementById('gallery-more');
@@ -273,7 +272,7 @@ window.addEventListener("scroll", () => {
   sections.forEach((section) => {
     const rect = section.getBoundingClientRect();
 
-    // cuando la secciÃ³n estÃ¡ visible (ajusta 100 a tu navbar)
+ 
     if (rect.top <= 86 && rect.bottom >= 86) {
       current = section.getAttribute("id");
     }
@@ -368,7 +367,7 @@ document.querySelectorAll(".accordion-header").forEach(header => {
 
 
 // ===============================
-// ðŸ”¥ USER ID GLOBAL
+//  USER ID GLOBAL
 // ===============================
 window.getUserId = function () {
   let userId = localStorage.getItem("userId");
@@ -382,7 +381,7 @@ window.getUserId = function () {
 };
 
 // ===============================
-// ðŸ”¥ TRACK GLOBAL (REUTILIZABLE)
+//TRACK GLOBAL (REUTILIZABLE)
 // ===============================
 window.track = function (evento, valor = 1) {
   const userId = window.getUserId();
@@ -448,7 +447,7 @@ if (btnLibro) {
 
 
 // ===============================
-// ðŸ”¥ TIEMPO TOTAL EN LA PÃGINA
+// TIEMPO TOTAL EN LA PÃGINA
 // ===============================
 let startPageTime = Date.now();
 
@@ -461,7 +460,7 @@ window.addEventListener("beforeunload", () => {
 
 
 
-// ðŸ”¥ GUARDAR AL CAMBIAR DE PESTAÃ‘A / MINIMIZAR
+//  GUARDAR AL CAMBIAR DE PESTAÃ‘A / MINIMIZAR
 document.addEventListener("visibilitychange", () => {
   if (document.visibilityState === "hidden") {
     const total = Date.now() - startPageTime;
