@@ -32,6 +32,7 @@
     const downloadTrigger = document.getElementById('download-trigger');
     const btnAhoraNo = document.getElementById('btn-ahora-no');
     const origamiLikeBtn = document.getElementById('origami-like-btn');
+    const origamiShareBtn = document.getElementById('origami-share-btn');
     const origamiLikeCount = document.getElementById('origami-like-count');
 
     // 3. Logica principal al hacer clic
@@ -42,7 +43,6 @@
             
             // Asignar la ruta de la imagen 
             imagenFrase.src = `Img/${seleccionAleatoria.numero}.png`;
-            imagenFrase.style.display = 'block';
 
             // Aplicar el color correspondiente a la seccionn
             origamiBack.style.borderColor = seleccionAleatoria.color;
@@ -75,10 +75,6 @@
         } else {
             // Doblar el papel (cerrar)
             origamiPaper.classList.remove('is-open');
-            // Ocultar imagen brevemente para que no se vea al girar
-            setTimeout(() => { 
-              imagenFrase.style.display = 'none';
-            }, 300);
             isOpen = false;
         }
     });
@@ -99,7 +95,6 @@
 
             // Reset visual
             contadorTexto.textContent = `Ideas descubiertas: 0`;
-            imagenFrase.style.display = 'none';
             origamiPaper.classList.remove('is-open');
             isOpen = false;
 
@@ -217,6 +212,32 @@
             updateOrigamiLikeInfo();
             galleryIndex = 0;
             renderGalleryCard();
+        });
+    }
+
+    if (origamiShareBtn) {
+        origamiShareBtn.addEventListener('click', () => {
+            if (currentOrigamiImageNumber === null) return;
+            
+            const imageUrl = `${window.location.origin}/Img/${currentOrigamiImageNumber}.png`;
+            const texto = `Descubre ideas innovadoras en Mindset Innovador 💡\n\n¡Me inspiró esta frase! ¿Cuál te inspira a ti?\n\n${window.location.origin}`;
+            
+            // Comprobar si el navegador soporta Web Share API
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Mindset Innovador',
+                    text: texto,
+                    url: window.location.origin
+                }).catch(err => console.log('Error al compartir:', err));
+            } else {
+                // Fallback: copiar al portapapeles
+                const urlCompartir = `${window.location.origin}?idea=${currentOrigamiImageNumber}`;
+                navigator.clipboard.writeText(`${texto}\n\n${urlCompartir}`).then(() => {
+                    alert('¡Enlace copiado al portapapeles! 📋\nAhora puedes compartirlo en tus redes sociales.');
+                }).catch(() => {
+                    alert(`Comparte esta idea:\n${texto}`);
+                });
+            }
         });
     }
 
