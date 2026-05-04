@@ -274,9 +274,7 @@ window.addEventListener("scroll", () => {
 
 // scroll al volver
 btn.addEventListener("click", () => {
-  hero.scrollIntoView({
-    behavior: "smooth"
-  });
+  openEbookModal();
 });
 
 
@@ -463,8 +461,73 @@ const btnLibro = document.getElementById("floating-ebook-btn");
 if (btnLibro) {
   btnLibro.addEventListener("click", () => {
     window.track("click_obtener_libro");
+    openEbookModal();
   });
 }
+
+// Funciones del modal del ebook
+function openEbookModal() {
+  const modal = document.getElementById('ebook-modal');
+  if (modal) {
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden'; // Previene scroll del fondo
+  }
+}
+
+function closeEbookModal() {
+  const modal = document.getElementById('ebook-modal');
+  if (modal) {
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto'; // Restaura scroll
+  }
+}
+
+function submitEbookForm() {
+  const nameInput = document.getElementById('ebook-name');
+  const emailInput = document.getElementById('ebook-email');
+  
+  if (!nameInput || !emailInput) return;
+  
+  const name = nameInput.value.trim();
+  const email = emailInput.value.trim();
+  
+  if (!name || !email) {
+    alert('Por favor completa todos los campos');
+    return;
+  }
+  
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    alert('Por favor ingresa un email válido');
+    return;
+  }
+  
+  // Aquí puedes agregar la lógica para enviar los datos
+  alert(`¡Gracias ${name}! Te enviaremos el ebook a ${email} pronto.`);
+  
+  // Limpiar formulario y cerrar modal
+  nameInput.value = '';
+  emailInput.value = '';
+  closeEbookModal();
+}
+
+// Cerrar modal al hacer click fuera
+document.addEventListener('DOMContentLoaded', () => {
+  const modal = document.getElementById('ebook-modal');
+  if (modal) {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeEbookModal();
+      }
+    });
+  }
+  
+  // Cerrar modal con tecla Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeEbookModal();
+    }
+  });
+});
 
 
 // ===============================

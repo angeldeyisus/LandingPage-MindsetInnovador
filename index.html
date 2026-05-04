@@ -30,8 +30,6 @@
 
     <header id="hero" class="hero-section">
 
-      <ebook-section></ebook-section>
-
       <div class="hero-content">
 
         <div class="origami-wrapper" id="origami-btn">
@@ -70,31 +68,28 @@
       </div>
     </header>
 
-    <section class="about-ebook">
-      <div class="container">
-
-        <div class="about-image">
-          <img src="Img/ebook_portada.png" alt="Ebook">
+    <!-- Modal del E-book con formulario -->
+    <div id="ebook-modal" class="modal-overlay">
+      <div class="modal-content ebook-modal-content">
+        <button class="close-modal" onclick="closeEbookModal()">&times;</button>
+        <div class="modal-container">
+          <div class="modal-image">
+            <img src="Img/ebook_portada.png" alt="Ebook">
+          </div>
+          <div class="modal-text">
+            <h2>DESCUBRE EL MINDSET INNOVADOR</h2>
+            <p>
+              Una colección de mas de 100 frases creadas para inspirar creatividad, reflexión y acción en estudiantes, emprendedores, líderes y personas que buscan transformar su entorno.
+            </p>
+            <div class="ebook-form">
+              <input type="text" id="ebook-name" placeholder="Tu nombre" required>
+              <input type="email" id="ebook-email" placeholder="Email" required>
+              <button class="btn-primary" onclick="submitEbookForm()">Descarga e-book gratis</button>
+            </div>
+          </div>
         </div>
-
-      <div class="about-text">
-        <h2>INNOVAR COMIENZA EN LA MENTE</h2>
-        <p>
-          El Mindset Innovador nace de la experiencia trabajando con
-          estudiantes, emprendedores y organizaciones que descubrieron que
-          innovar no se trata solo de técnicas, sino de aprender a observar
-          diferente, cuestionar lo establecido y actuar con propósito. Este
-          ebook reúne más de 100 frases pensadas para inspirarte en distintos
-          momentos. No busca decirte qué pensar, sino invitarte a pensar
-          distinto, activar tu creatividad y convertir ideas en acción. A lo
-          largo de sus cinco etapas, recorrerás el camino de la innovación:
-          desde la curiosidad inicial, la exploración de ideas, su validación en
-          el mundo real, la generación de impacto y el aprendizaje continuo. Más
-          que leer sobre innovación, aquí descubrirás cómo vivirla.
-        </p>
       </div>
-      </div>
-    </section>
+    </div>
 
     <section id="secciones" class="sections-overview">
       <h2>Fases del proceso innovador</h2>
