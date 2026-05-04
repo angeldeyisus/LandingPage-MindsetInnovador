@@ -48,18 +48,12 @@
               <span>Toca para desdoblar una idea</span>
             </div>
             <div class="origami-back" id="origami-back-container">
-              <div class="frase-imagen-wrapper">
-                <img id="frase-imagen" src="" alt="Frase de innovación" style="display: none;">
-              </div>
-              <div class="origami-interactions" id="origami-interactions" style="display: none;">
-                <div class="interaction-btn like-btn">
-                  <i class="far fa-heart heart-icon"></i>
-                  <span class="like-count">0</span>
-                </div>
-                <div class="interaction-btn share-btn">
-                  <i class="fas fa-share-alt"></i>
-                  <span>Compartir</span>
-              </div>
+              <img id="frase-imagen" src="" alt="Frase de innovación" style="display: none;">
+              <div class="origami-like-panel">
+                <button id="origami-like-btn" class="btn-secondary origami-like-btn" type="button">
+                  <i class="far fa-heart"></i> Me gusta esta idea
+                </button>
+                <span id="origami-like-count" class="origami-like-count">0 likes</span>
               </div>
             </div>
           </div>
@@ -70,93 +64,6 @@
         >
           Ideas descubiertas: 0 
         </p>
-
-        <!-- POP-UP DE COMPARTIR -->
-<div id="share-modal" class="modal-overlay" style="display: none;">
-    <div class="modal-content">
-        <!-- Botón para cerrar (X) -->
-        <span class="close-modal" id="close-share-modal">&times;</span>
-        
-        <h3>Compartir Frase</h3>
-        <p style="margin-bottom: 1rem; color: var(--text-light); font-size: 0.9rem;">
-            ¡Inspira a otros con esta idea!
-        </p>
-        
-        <!-- Vista previa de la imagen -->
-        <div class="preview-container">
-            <img id="share-preview-img" src="" alt="Vista previa de la frase">
-        </div>
-        
-        <!-- Botones de redes sociales -->
-        <div class="social-share-buttons">
-            <!-- WhatsApp -->
-            <a href="#" class="social-btn whatsapp-btn" title="Compartir en WhatsApp">
-                <i class="fab fa-whatsapp"></i>
-            </a>
-            <!-- Facebook -->
-            <a href="#" class="social-btn facebook-btn" title="Compartir en Facebook">
-                <i class="fab fa-facebook-f"></i>
-            </a>
-            <!-- Instagram -->
-            <a href="#" class="social-btn instagram-btn" title="Compartir en Instagram">
-                <i class="fab fa-instagram"></i>
-            </a>
-        </div>
-    </div>
-</div>
-
-        <div
-          class="download-trigger"
-          id="download-trigger"
-          style="display: none; text-align: center"
-        >
-          <h3 style="margin-bottom: 15px; color: var(--primary-accent)">
-            ¡Has descubierto tu dosis de innovación!
-          </h3>
-          <p style="margin-bottom: 20px">
-            Descarga el ebook completo para leer todas las frases.
-          </p>
-          <form
-            action="guardar_email.php"
-            method="POST"
-            class="download-form"
-            style="margin-bottom: 15px"
-          >
-            <input
-              type="email"
-              name="email"
-              placeholder="Tu correo electrónico..."
-              required
-            />
-            <button type="submit" class="btn-primary">Descargar Ebook</button>
-          </form>
-          <button type="button" id="btn-ahora-no" class="btn-text">
-            Ahora no, quiero seguir leyendo
-          </button>
-        </div>
-
-        <div
-          class="download-trigger"
-          id="download-trigger"
-          style="display: none"
-        >
-          <h3>¡Has descubierto 5 frases!</h3>
-          <form
-            action="[TU_SCRIPT_DE_BASE_DE_DATOS.php]"
-            method="POST"
-            class="download-form"
-          >
-            <input
-              type="email"
-              name="email"
-              placeholder="Ingresa tu email válido..."
-              required
-            />
-            <button type="submit" class="btn-primary">
-              Descargar Ebook Completo
-            </button>
-          </form>
-        </div>
       </div>
     </header>
 
@@ -275,8 +182,9 @@
     <section id="galeria" class="gallery-carousel">
       <h2>Las Más Valoradas</h2>
       <div class="carousel-container">
-        <div class="carousel-slide">
+        <div class="carousel-slide" id="gallery-slide">
           <img
+            id="gallery-image"
             src="Img/8.png"
             alt="Imagen aleatoria"
             class="image-placeholder"
@@ -284,23 +192,23 @@
           <div class="interaction-bar">
             <div class="likes">
               <i class="far fa-heart heart-icon"></i>
-              <span class="like-count">124</span>
+              <span id="gallery-like-count" class="like-count">124</span>
             </div>
             <div class="share"><i class="fas fa-share-alt"></i> Compartir</div>
           </div>
         </div>
       </div>
-      <button class="btn-secondary">Mostrar más</button>
+      <button id="gallery-more" class="btn-secondary">Mostrar más</button>
     </section>
 
 
     <div class="nav-switch">
   <button class="btn-primary" onclick="mostrarVista('juego')">
-    Juego de frases
+    Duelo de Frases
   </button>
 
   <button class="btn-secondary" onclick="mostrarVista('extra')">
-    Unir Frases
+    Completa la frase
   </button>
 </div>
 
@@ -309,23 +217,23 @@
     <section id="juegos" class="gamification-section vista">
 
       <h2>¿CUÁL TE INSPIRA MÁS?</h2>
-      <p>Elige tu favorita para continuar.</p>
+      <p>Elige entre dos frases aleatorias. Cada elección traerá nuevas opciones para seguir jugando.</p>
 
       <div class="vs-container">
-        <div class="choice-card">
-          <img src="Img/74.png" class="image-placeholder" />
-          <button class="btn-primary">¡Me gusta esta!</button>
+        <div class="choice-card" id="choice-card-1" data-card="1">
+          <img id="choice-image-1" src="Img/74.png" class="image-placeholder" />
+          <button id="vote-button-1" class="btn-primary">¡Me gusta esta!</button>
         </div>
 
         <div class="vs-badge">VS</div>
 
-        <div class="choice-card">
-          <img src="Img/40.png" class="image-placeholder" />
-          <button class="btn-primary">¡Me quedo con esta!</button>
+        <div class="choice-card" id="choice-card-2" data-card="2">
+          <img id="choice-image-2" src="Img/40.png" class="image-placeholder" />
+          <button id="vote-button-2" class="btn-primary">¡Me quedo con esta!</button>
         </div>
       </div>
 
-      <button id="btn-flotante-libro" class="btn-secondary">Obtener el libro</button>
+      <button id="btn-flotante-libro" class="btn-secondary">Obtener el E-book Gratis</button>
     </section>
 
 
