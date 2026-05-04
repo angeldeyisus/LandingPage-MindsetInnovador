@@ -4,7 +4,15 @@ const pairs = [
   { left: "Cada innovación es semilla:", right: "algunas germinan, otras fertilizan futuros intentos" },
   { left: "La mejor métrica de impacto", right: "es la sonrisa del usuario que percibe el valor entregado" },
   { left: "El final de una innovación", right: "es el comienzo de la siguiente" },
-  { left: "El innovador no busca el aplauso,", right: "busca el impacto positivo" }
+  { left: "El innovador no busca el aplauso,", right: "busca el impacto positivo" },
+  
+
+  { left: "El primer paso no es tener una idea,", right: "es tener una pregunta" },
+  { left: "Innovar es combinar lo conocido", right: "de formas que nadie imaginó" },
+  { left: "Un experimento pequeño hoy", right: "vale más que una gran idea mañana" },
+  { left: "La innovación más poderosa no cambia productos,", right: "cambia comportamientos" },
+  { left: "No guardes tus lecciones,", right: "compártelas como semillas" }
+
 ];
 
 function render(container) {
@@ -142,6 +150,9 @@ class MatchGame extends HTMLElement {
 
     const container = this.shadowRoot.querySelector("#game");
     render(container);
+
+    // 🔥 UNA SOLA LÍNEA (ESCALABLE)
+    window.trackTimeInView(this.shadowRoot.host, "tiempo_juego");
   }
 }
 

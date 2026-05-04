@@ -47,6 +47,16 @@ class ebookSection extends HTMLElement {
       </div>
     `;
 
+
+
+  const btn = this.shadowRoot.querySelector("button");
+
+  if (btn) {
+    btn.addEventListener("click", () => {
+      window.track("click_descargar");
+    });
+  }
+
 if (isCompact) {
   const btn = this.shadowRoot.querySelector("#go-to-ebook");
 
