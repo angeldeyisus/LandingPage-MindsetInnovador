@@ -12,8 +12,6 @@ const pairs = [
   { left: "Un experimento pequeño hoy", right: "vale más que una gran idea mañana" },
   { left: "La innovación más poderosa no cambia productos,", right: "cambia comportamientos" },
   { left: "No guardes tus lecciones,", right: "compártelas como semillas" }
-];
-
 
 ];
 
