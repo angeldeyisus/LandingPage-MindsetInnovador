@@ -1,15 +1,15 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // 1. Definición de las Secciones, Rangos de Imágenes y Colores
-    // Nota: Ajusté la sección 1 a terminar en 31 para que no choque con la sección 2.
+﻿document.addEventListener('DOMContentLoaded', () => {
+    // 1. DefiniciÃ³n de las Secciones, Rangos de ImÃ¡genes y Colores
+    // Nota: AjustÃ© la secciÃ³n 1 a terminar en 31 para que no choque con la secciÃ³n 2.
     const secciones = [
         { id: 1, min: 8, max: 31, color: "#10B981" },   // Verde (La Semilla)
-        { id: 2, min: 34, max: 61, color: "#F59E0B" },  // Amarillo (Ideación)
-        { id: 3, min: 64, max: 85, color: "#3B82F6" },  // Azul (En Acción)
+        { id: 2, min: 34, max: 61, color: "#F59E0B" },  // Amarillo (IdeaciÃ³n)
+        { id: 3, min: 64, max: 85, color: "#3B82F6" },  // Azul (En AcciÃ³n)
         { id: 4, min: 88, max: 106, color: "#FF5C35" }, // Naranja/Rojo (Lanzar)
         { id: 5, min: 109, max: 125, color: "#8B5CF6" } // Morado (Aprendizaje)
     ];
 
-    // 2. Generar un arreglo con todos los números de imagen válidos
+    // 2. Generar un arreglo con todos los nÃºmeros de imagen vÃ¡lidos
     let imagenesValidas = [];
     secciones.forEach(sec => {
         for (let i = sec.min; i <= sec.max; i++) {
@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const clicsParaDescarga = -1;
     let isOpen = false;
     let mostroFormulario = false;
+    let currentOrigamiImageNumber = null;
 
     // Elementos del DOM
     const origamiWrapper = document.getElementById('origami-btn');
@@ -31,26 +32,30 @@ document.addEventListener('DOMContentLoaded', () => {
     const contadorTexto = document.getElementById('contador-frases');
     const downloadTrigger = document.getElementById('download-trigger');
     const btnAhoraNo = document.getElementById('btn-ahora-no');
+    const origamiLikeBtn = document.getElementById('origami-like-btn');
+    const origamiLikeCount = document.getElementById('origami-like-count');
 
-    // 3. Lógica principal al hacer clic
+    // 3. LÃ³gica principal al hacer clic
     origamiWrapper.addEventListener('click', () => {
         if (!isOpen) {
             // Elegir una imagen PNG al azar
             const seleccionAleatoria = imagenesValidas[Math.floor(Math.random() * imagenesValidas.length)];
             
-            // Asignar la ruta de la imagen (Asegúrate de que la carpeta se llame "imagenes")
-            imagenFrase.src = `img/${seleccionAleatoria.numero}.png`;
+            // Asignar la ruta de la imagen (AsegÃºrate de que la carpeta se llame "Img")
+            imagenFrase.src = `Img/${seleccionAleatoria.numero}.png`;
             imagenFrase.style.display = 'block';
 
-            // Aplicar el color correspondiente a la sección
+            // Aplicar el color correspondiente a la secciÃ³n
             origamiBack.style.borderColor = seleccionAleatoria.color;
             origamiBack.style.boxShadow = `0 10px 30px ${seleccionAleatoria.color}33`; // Sombra suave del color
 
-            // Animación de desdoblar
+            // AnimaciÃ³n de desdoblar
             origamiPaper.classList.add('is-open');
             clics++;
+            currentOrigamiImageNumber = seleccionAleatoria.numero;
+            updateOrigamiLikeInfo();
             
-            // Lógica del contador
+            // LÃ³gica del contador
             if (!mostroFormulario && clics <= clicsParaDescarga) {
                 contadorTexto.textContent = `Ideas descubiertas: ${clics} / ${clicsParaDescarga}`;
             } else {
@@ -59,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             isOpen = true;
 
-            // Revisar límite para el formulario
+            // Revisar lÃ­mite para el formulario
             if (clics === clicsParaDescarga && !mostroFormulario) {
                 setTimeout(() => {
                     origamiWrapper.style.display = 'none';
@@ -79,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 4. Lógica del botón "Ahora no"
+    // 4. LÃ³gica del botÃ³n "Ahora no"
     if (btnAhoraNo) {
         btnAhoraNo.addEventListener('click', () => {
             // Ocultar formulario
@@ -104,6 +109,130 @@ document.addEventListener('DOMContentLoaded', () => {
             origamiBack.style.boxShadow = "";
         });
     }
+
+    // 5. VotaciÃ³n y galerÃ­a ordenada por likes
+    const galleryImage = document.getElementById('gallery-image');
+    const galleryLikeCount = document.getElementById('gallery-like-count');
+    const galleryMoreBtn = document.getElementById('gallery-more');
+    const choiceImage1 = document.getElementById('choice-image-1');
+    const choiceImage2 = document.getElementById('choice-image-2');
+    const voteButton1 = document.getElementById('vote-button-1');
+    const voteButton2 = document.getElementById('vote-button-2');
+
+    let currentChoicePair = [];
+    let gallerySorted = [];
+    let galleryIndex = 0;
+    const likesByImage = JSON.parse(localStorage.getItem('mindset_likes')) || {};
+
+    const saveLikes = () => {
+        localStorage.setItem('mindset_likes', JSON.stringify(likesByImage));
+    };
+
+    const getLikes = (numero) => likesByImage[numero] || 0;
+
+    const updateOrigamiLikeInfo = () => {
+        if (!origamiLikeCount || currentOrigamiImageNumber === null) return;
+        const likes = getLikes(currentOrigamiImageNumber);
+        origamiLikeCount.textContent = `${likes} like${likes === 1 ? '' : 's'}`;
+    };
+
+    const getSortedGalleryImages = () => {
+        return [...imagenesValidas].sort((a, b) => {
+            const diff = getLikes(b.numero) - getLikes(a.numero);
+            return diff !== 0 ? diff : a.numero - b.numero;
+        });
+    };
+
+    const renderGalleryCard = () => {
+        gallerySorted = getSortedGalleryImages();
+        if (!gallerySorted.length || !galleryImage || !galleryLikeCount) return;
+
+        if (galleryIndex >= gallerySorted.length) {
+            galleryIndex = 0;
+        }
+
+        const current = gallerySorted[galleryIndex];
+        galleryImage.src = `Img/${current.numero}.png`;
+        galleryImage.alt = `Imagen ${current.numero} - Likes ${getLikes(current.numero)}`;
+        galleryLikeCount.textContent = getLikes(current.numero);
+    };
+
+    const choosePair = () => {
+        const available = [...imagenesValidas];
+        const currentNums = currentChoicePair.map(item => item.numero);
+        const filtered = available.filter(item => !currentNums.includes(item.numero));
+
+        const getRandomItem = (pool) => {
+            if (!pool.length) return null;
+            return pool.splice(Math.floor(Math.random() * pool.length), 1)[0];
+        };
+
+        const pair = [];
+        const source = filtered.length >= 2 ? filtered : available;
+        pair.push(getRandomItem(source));
+        pair.push(getRandomItem(source));
+
+        return pair;
+    };
+
+    const renderChoiceCards = () => {
+        if (!choiceImage1 || !choiceImage2 || currentChoicePair.length < 2) return;
+
+        choiceImage1.src = `Img/${currentChoicePair[0].numero}.png`;
+        choiceImage1.alt = `OpciÃ³n 1 - Imagen ${currentChoicePair[0].numero}`;
+        choiceImage2.src = `Img/${currentChoicePair[1].numero}.png`;
+        choiceImage2.alt = `OpciÃ³n 2 - Imagen ${currentChoicePair[1].numero}`;
+    };
+
+    const refreshChoicePair = () => {
+        currentChoicePair = choosePair();
+        if (currentChoicePair[0] && currentChoicePair[1]) {
+            renderChoiceCards();
+        }
+    };
+
+    const handleVote = (index) => {
+        const selected = currentChoicePair[index];
+        if (!selected) return;
+
+        likesByImage[selected.numero] = getLikes(selected.numero) + 1;
+        saveLikes();
+        galleryIndex = 0;
+        renderGalleryCard();
+        refreshChoicePair();
+    };
+
+    if (voteButton1) {
+        voteButton1.addEventListener('click', () => handleVote(0));
+    }
+
+    if (voteButton2) {
+        voteButton2.addEventListener('click', () => handleVote(1));
+    }
+
+    if (origamiLikeBtn) {
+        origamiLikeBtn.addEventListener('click', () => {
+            if (currentOrigamiImageNumber === null) return;
+            likesByImage[currentOrigamiImageNumber] = getLikes(currentOrigamiImageNumber) + 1;
+            saveLikes();
+            updateOrigamiLikeInfo();
+            galleryIndex = 0;
+            renderGalleryCard();
+        });
+    }
+
+    if (galleryMoreBtn) {
+
+        galleryMoreBtn.addEventListener('click', () => {
+            gallerySorted = getSortedGalleryImages();
+            if (!gallerySorted.length) return;
+            galleryIndex = (galleryIndex + 1) % gallerySorted.length;
+            renderGalleryCard();
+        });
+    }
+
+    renderGalleryCard();
+    refreshChoicePair();
 });
 
 
@@ -144,7 +273,7 @@ window.addEventListener("scroll", () => {
   sections.forEach((section) => {
     const rect = section.getBoundingClientRect();
 
-    // cuando la sección está visible (ajusta 100 a tu navbar)
+    // cuando la secciÃ³n estÃ¡ visible (ajusta 100 a tu navbar)
     if (rect.top <= 86 && rect.bottom >= 86) {
       current = section.getAttribute("id");
     }
@@ -190,7 +319,7 @@ function cargarMicrofrontend() {
 
   import("/components/juegoUnirFrases/UnirFrases.js")
     .then(() => {
-      container.innerHTML = `<match-game></match-game>`; // ✅ usamos el componente
+      container.innerHTML = `<match-game></match-game>`; // âœ… usamos el componente
       container.dataset.loaded = "true";
     })
     .catch(err => console.error("Error cargando microfrontend:", err));
@@ -208,7 +337,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (btnCoffee) {
         btnCoffee.addEventListener("click", () => {
-            alert("Gracias por tu interés 🙌\nPróximamente podrás apoyar al autor.");
+            alert("Gracias por tu interÃ©s ðŸ™Œ\nPrÃ³ximamente podrÃ¡s apoyar al autor.");
         });
     }
 });
@@ -239,7 +368,7 @@ document.querySelectorAll(".accordion-header").forEach(header => {
 
 
 // ===============================
-// 🔥 USER ID GLOBAL
+// ðŸ”¥ USER ID GLOBAL
 // ===============================
 window.getUserId = function () {
   let userId = localStorage.getItem("userId");
@@ -253,7 +382,7 @@ window.getUserId = function () {
 };
 
 // ===============================
-// 🔥 TRACK GLOBAL (REUTILIZABLE)
+// ðŸ”¥ TRACK GLOBAL (REUTILIZABLE)
 // ===============================
 window.track = function (evento, valor = 1) {
   const userId = window.getUserId();
@@ -319,7 +448,7 @@ if (btnLibro) {
 
 
 // ===============================
-// 🔥 TIEMPO TOTAL EN LA PÁGINA
+// ðŸ”¥ TIEMPO TOTAL EN LA PÃGINA
 // ===============================
 let startPageTime = Date.now();
 
@@ -332,7 +461,7 @@ window.addEventListener("beforeunload", () => {
 
 
 
-// 🔥 GUARDAR AL CAMBIAR DE PESTAÑA / MINIMIZAR
+// ðŸ”¥ GUARDAR AL CAMBIAR DE PESTAÃ‘A / MINIMIZAR
 document.addEventListener("visibilitychange", () => {
   if (document.visibilityState === "hidden") {
     const total = Date.now() - startPageTime;
@@ -342,6 +471,7 @@ document.addEventListener("visibilitychange", () => {
     startPageTime = Date.now(); // reinicia contador
   }
 });
+
 
 
 
