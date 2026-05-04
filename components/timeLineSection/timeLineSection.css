@@ -1,0 +1,86 @@
+:host {
+  display: block;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Contenedor general */
+.timeline {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Secciones */
+.section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 80vh;
+  padding: 60px 10%;
+  gap: 40px;
+}
+
+/* Alternar */
+.section.right {
+  flex-direction: row-reverse;
+}
+
+/* Área visual */
+.visual {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ICONO GIGANTE */
+.icon {
+  font-size: 160px;
+  opacity: 0.15;
+  transition: transform 0.3s ease;
+}
+
+/* Hover da vida */
+.section:hover .icon {
+  transform: scale(1.1);
+  opacity: 0.25;
+}
+
+/* Contenido */
+.content {
+  flex: 1;
+  max-width: 500px;
+}
+
+/* TÍTULO GRANDE */
+.content h2 {
+  font-size: 40px;
+  margin-bottom: 20px;
+}
+
+/* TEXTO GRANDE */
+.content p {
+  font-size: 20px;
+  line-height: 1.6;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .section {
+    flex-direction: column !important;
+    text-align: center;
+  }
+
+  .icon {
+    font-size: 120px;
+  }
+
+  .content h2 {
+    font-size: 28px;
+  }
+
+  .content p {
+    font-size: 18px;
+  }
+}

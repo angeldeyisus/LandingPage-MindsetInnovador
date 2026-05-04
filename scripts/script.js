@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- AQUÍ ESTABA EL ERROR: Agregamos las variables faltantes ---
     let clics = 0;
+    const clicsParaDescarga = -1;
     let isOpen = false;
     // ---------------------------------------------------------------
 
@@ -297,13 +298,16 @@ function cargarMicrofrontend() {
     if (!container) return;
     if (container.dataset.loaded) return;
 
-    import("/components/juegoUnirFrases/UnirFrases.js")
-        .then(module => {
-            module.render(container);
-            container.dataset.loaded = "true";
-        })
-        .catch(err => console.error("Error cargando microfrontend:", err));
+  import("/components/juegoUnirFrases/UnirFrases.js")
+    .then(() => {
+      container.innerHTML = `<match-game></match-game>`; // ✅ usamos el componente
+      container.dataset.loaded = "true";
+    })
+    .catch(err => console.error("Error cargando microfrontend:", err));
 }
+
+
+
 
 document.addEventListener("DOMContentLoaded", () => {
     mostrarVista("juego");
@@ -343,3 +347,115 @@ document.querySelectorAll(".accordion-header").forEach(header => {
         item.classList.toggle("active");
     });
 });
+
+
+
+
+// ===============================
+// 🔥 USER ID GLOBAL
+// ===============================
+window.getUserId = function () {
+  let userId = localStorage.getItem("userId");
+
+  if (!userId) {
+    userId = "user_" + Math.random().toString(36).substr(2, 9);
+    localStorage.setItem("userId", userId);
+  }
+
+  return userId;
+};
+
+// ===============================
+// 🔥 TRACK GLOBAL (REUTILIZABLE)
+// ===============================
+window.track = function (evento, valor = 1) {
+  const userId = window.getUserId();
+
+  let data = JSON.parse(localStorage.getItem("metrics")) || {};
+
+  if (!data[userId]) {
+    data[userId] = {};
+  }
+
+  data[userId][evento] = (data[userId][evento] || 0) + valor;
+
+  localStorage.setItem("metrics", JSON.stringify(data));
+};
+
+
+
+window.trackTimeInView = function (element, eventName) {
+  let startTime = 0;
+  let totalTime = 0;
+  let isVisible = false;
+
+  const saveTime = () => {
+    window.track(eventName, totalTime);
+    totalTime = 0;
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        startTime = Date.now();
+        isVisible = true;
+      } else if (isVisible) {
+        totalTime += Date.now() - startTime;
+        saveTime();
+        isVisible = false;
+      }
+    });
+  }, { threshold: 0.5 });
+
+  observer.observe(element);
+
+  window.addEventListener("beforeunload", () => {
+    if (isVisible) {
+      totalTime += Date.now() - startTime;
+      saveTime();
+    }
+  });
+};
+
+
+
+
+
+// Para guardar click el boton flotante de obtener 
+const btnLibro = document.getElementById("floating-ebook-btn");
+
+if (btnLibro) {
+  btnLibro.addEventListener("click", () => {
+    window.track("click_obtener_libro");
+  });
+}
+
+
+// ===============================
+// 🔥 TIEMPO TOTAL EN LA PÁGINA
+// ===============================
+let startPageTime = Date.now();
+
+window.addEventListener("beforeunload", () => {
+  const total = Date.now() - startPageTime;
+
+  // usa el mismo sistema
+  window.track("tiempo_total_pagina", total);
+});
+
+
+
+// 🔥 GUARDAR AL CAMBIAR DE PESTAÑA / MINIMIZAR
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "hidden") {
+    const total = Date.now() - startPageTime;
+
+    window.track("tiempo_total_pagina", total);
+
+    startPageTime = Date.now(); // reinicia contador
+  }
+});
+
+
+
+
