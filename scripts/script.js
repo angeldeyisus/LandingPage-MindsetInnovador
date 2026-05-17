@@ -292,7 +292,7 @@ window.addEventListener("scroll", () => {
     const rect = section.getBoundingClientRect();
 
  
-    if (rect.top <= 86 && rect.bottom >= 86) {
+    if (rect.top <= 99 && rect.bottom >= 99) {
       current = section.getAttribute("id");
     }
   });

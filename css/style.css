@@ -223,6 +223,15 @@ body {
     scroll-margin-top: 40px;
 }
 
+#galeria{
+    scroll-margin-top: 12px;
+}
+
+#juegos{
+    scroll-margin-top: 10px;
+}
+
+
 .hero-section {
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -243,7 +252,7 @@ body {
 .hero-right {
   display: flex;
   align-items: center;
-  
+
 }
 
 ebook-section {
@@ -1517,7 +1526,6 @@ ebook-section {
 
 .autor-img {
     flex: 0 0 auto;
-    animation: float 3s ease-in-out infinite;
 }
 
 .autor-img img {
@@ -1895,4 +1903,13 @@ button:focus-visible {
     background: linear-gradient(135deg, var(--primary-accent) 0%, #0052A3 100%);
     color: white;
     border-color: transparent;
+}
+
+
+
+
+.title-about-autor {
+    margin-left: 135px;
+    margin-bottom: 30px;
+    font-size:  2.2rem;
 }
