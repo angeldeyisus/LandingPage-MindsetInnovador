@@ -1,6 +1,18 @@
-﻿document.addEventListener('DOMContentLoaded', () => {
+﻿let ebookBackend = null;
 
-    const secciones = [
+try {
+  ebookBackend = new window.EbookBackend({
+    supabaseUrl: SUPABASE_URL,
+    supabaseAnonKey: SUPABASE_ANON_KEY
+  });
+  ebookBackend.init();
+} catch (error) {
+  console.warn('EbookBackend no inicializado:', error.message);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    const secciones = [ 
         { id: 1, min: 8, max: 31, color: "#10B981" },   // Verde (La Semilla)
         { id: 2, min: 34, max: 61, color: "#F59E0B" },  // Amarillo (IdeaciÃ³n)
         { id: 3, min: 64, max: 85, color: "#3B82F6" },  // Azul (En AcciÃ³n)
@@ -569,7 +581,7 @@ function closeEbookModal() {
   document.getElementById("ebook-modal").classList.remove("active");
 }
 
-function submitEbookForm() {
+async function submitEbookForm() {
   const nameInput = document.getElementById('ebook-name');
   const emailInput = document.getElementById('ebook-email');
   
@@ -588,10 +600,21 @@ function submitEbookForm() {
     return;
   }
   
-  // Aquí puedes agregar la lógica para enviar los datos
-  alert(`¡Gracias ${name}! Te enviaremos el ebook a ${email} pronto.`);
+  if (!ebookBackend || !ebookBackend.isReady()) {
+    alert('La integración con Supabase no está configurada. Revisa la URL y la clave en script.js.');
+    return;
+  }
+
+  const { data, error } = await ebookBackend.saveEbookRequest({ name, email });
+
+  if (error) {
+    console.error('Supabase error:', error);
+    alert('Hubo un error guardando tu información. Intenta de nuevo más tarde.');
+    return;
+  }
+
+  alert(`¡Gracias ${name}! Tu registro se guardó correctamente. Te enviaremos el ebook a ${email} pronto.`);
   
-  // Limpiar formulario y cerrar modal
   nameInput.value = '';
   emailInput.value = '';
   closeEbookModal();
