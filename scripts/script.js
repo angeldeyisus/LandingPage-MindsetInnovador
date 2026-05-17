@@ -97,7 +97,7 @@
     // Hacer la función accesible globalmente
     window.shareToInstagramStory = shareToInstagramStory;
 
-    // 2. Generar un arreglo con todos los nÃºmeros de imagen vÃ¡lidos
+    //  Generar un arreglo con todos los numeros de imagen validos
     let imagenesValidas = [];
     secciones.forEach(sec => {
         for (let i = sec.min; i <= sec.max; i++) {
@@ -294,7 +294,8 @@
     }
 
     if (origamiLikeBtn) {
-        origamiLikeBtn.addEventListener('click', () => {
+        origamiLikeBtn.addEventListener('click', (event) => {
+            event.stopPropagation();
             if (currentOrigamiImageNumber === null) return;
             likesByImage[currentOrigamiImageNumber] = getLikes(currentOrigamiImageNumber) + 1;
             saveLikes();
@@ -305,7 +306,8 @@
     }
 
     if (origamiShareBtn) {
-        origamiShareBtn.addEventListener('click', () => {
+        origamiShareBtn.addEventListener('click', (event) => {
+            event.stopPropagation();
             if (currentOrigamiImageNumber === null) return;
             shareToInstagramStory(`Img/${currentOrigamiImageNumber}.png`);
         });
