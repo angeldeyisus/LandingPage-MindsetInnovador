@@ -32,9 +32,9 @@ class ebookSection extends HTMLElement {
               isCompact
                 ? `<button id="go-to-ebook">Ver Ebook</button>`
                 : `
-                  <input type="text" placeholder="Tu nombre ">
-                  <input type="email" placeholder="Email">
-                  <button>Descarga e-book gratis</button>
+                  <button class="ebook-download-btn">
+                    Descargar e-book gratis
+                  </button>
                 `
             }
           </div>
@@ -74,3 +74,8 @@ if (isCompact) {
 }
 
 customElements.define("ebook-section", ebookSection);
+
+
+
+
+

@@ -38,12 +38,15 @@
 
 h1 {
   color: #0284C7;
-  margin-bottom: 15px;
 }
 
 p {
   color: #333;
   line-height: 1.5;
+  font-size: 1.32rem;
+
+  color: #0F172A;
+
 }
 
 .form {
@@ -61,16 +64,24 @@ input {
 }
 
 button {
-  background: #0284C7;
+  background: linear-gradient(
+    135deg,
+    var(--primary-accent) 0%,
+    var(--secondary-accent) 100%
+  );
+
   color: white;
   border: none;
-  padding: 12px 20px;
+  padding: 15px 24px;
+  border-radius: 12px;
+  font-weight: 600;
   cursor: pointer;
-  font-weight: bold;
+  box-shadow: var(--shadow-lg);
+  transition: transform 0.2s ease;
 }
 
 button:hover {
-  background: #38BDF8;
+  transform: translateY(-2px);
 }
 
 .checkbox {
@@ -113,3 +124,8 @@ button:hover {
   font-size: 0.8rem;
   border-radius: 6px;
 }
+
+
+
+
+

@@ -312,17 +312,30 @@ window.addEventListener("scroll", () => {
 
 //Funcion para la seccion de juegos
 function mostrarVista(vista) {
-  const juegos = document.getElementById("juegos");
-  const extra = document.getElementById("extra");
+
+  const vistaJuego = document.getElementById("vista-juego");
+  const vistaExtra = document.getElementById("vista-extra");
+
+  const btnJuego = document.getElementById("btn-juego");
+  const btnExtra = document.getElementById("btn-extra");
 
   if (vista === "juego") {
-    juegos.classList.remove("oculto");
-    extra.classList.add("oculto");
+
+    vistaJuego.classList.remove("oculto");
+    vistaExtra.classList.add("oculto");
+
+    btnJuego.classList.add("active");
+    btnExtra.classList.remove("active");
   }
 
   if (vista === "extra") {
-    juegos.classList.add("oculto");
-    extra.classList.remove("oculto");
+
+    vistaJuego.classList.add("oculto");
+    vistaExtra.classList.remove("oculto");
+
+    btnExtra.classList.add("active");
+    btnJuego.classList.remove("active");
+
     cargarMicrofrontend();
   }
 }
@@ -551,3 +564,34 @@ document.addEventListener("visibilitychange", () => {
 
 
 
+
+
+
+
+// Función reutilizable
+function handleEbookClick() {
+  window.track("click_obtener_libro");
+  openEbookModal();
+}
+
+// Botón flotante
+const btnLibro1 = document.getElementById("floating-ebook-btn");
+
+if (btnLibro1) {
+  btnLibro1.addEventListener("click", handleEbookClick);
+}
+
+// Botón dentro del componente
+document.addEventListener("click", (e) => {
+  const path = e.composedPath();
+
+  const ebookBtn = path.find(
+    (el) =>
+      el instanceof HTMLElement &&
+      el.classList?.contains("ebook-download-btn")
+  );
+
+  if (ebookBtn) {
+    handleEbookClick();
+  }
+});

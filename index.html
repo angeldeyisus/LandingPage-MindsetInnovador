@@ -30,6 +30,13 @@
 
   <header id="hero" class="hero-section">
 
+
+  <!-- DERECHA: EBOOK -->
+  <div class="hero-right">
+    <ebook-section></ebook-section>
+  </div>
+
+
   <!-- IZQUIERDA: ORIGAMI -->
   <div class="hero-left">
 
@@ -69,17 +76,9 @@
       </div>
     </div>
 
-    <p id="contador-frases"
-       style="margin-top: 15px; font-weight: bold; color: var(--text-light)">
-      Ideas descubiertas: 0
-    </p>
 
   </div>
 
-  <!-- DERECHA: EBOOK -->
-  <div class="hero-right">
-    <ebook-section></ebook-section>
-  </div>
 
 </header>
 
@@ -228,45 +227,82 @@
     </section>
 
 
-    <div class="nav-switch">
-  <button class="btn-primary" onclick="mostrarVista('juego')">
-    Duelo de Frases
-  </button>
-
-  <button class="btn-secondary" onclick="mostrarVista('extra')">
-    Completa la frase
-  </button>
-</div>
 
 
-    <!-- VISTA 1 -->
-    <section id="juegos" class="gamification-section vista">
+<section id="juegos" class="gamification-section vista">
 
-      <h2>¿CUÁL TE INSPIRA MÁS?</h2>
-      <p>Elige entre dos frases aleatorias. Cada elección traerá nuevas opciones para seguir jugando.</p>
+  <div class="games-layout">
 
-      <div class="vs-container">
-        <div class="choice-card" id="choice-card-1" data-card="1">
-          <img id="choice-image-1" src="Img/74.png" class="image-placeholder" />
-          <button id="vote-button-1" class="btn-primary">¡Me gusta esta!</button>
-        </div>
+    <!-- SIDEBAR -->
+    <aside class="games-sidebar">
 
-        <div class="vs-badge">VS</div>
+      <h3>Juegos</h3>
 
-        <div class="choice-card" id="choice-card-2" data-card="2">
-          <img id="choice-image-2" src="Img/40.png" class="image-placeholder" />
-          <button id="vote-button-2" class="btn-primary">¡Me quedo con esta!</button>
-        </div>
+      <div class="nav-switch">
+
+        <button 
+          id="btn-juego"
+          class="game-nav-btn active"
+          onclick="mostrarVista('juego')">
+          ⚔️ Duelo de Frases
+        </button>
+
+        <button 
+          id="btn-extra"
+          class="game-nav-btn"
+          onclick="mostrarVista('extra')">
+          🧩 Completa las frases
+        </button>
+
       </div>
 
-      <button id="btn-flotante-libro" class="btn-secondary">Obtener el E-book Gratis</button>
-    </section>
+    </aside>
 
+    <!-- CONTENIDO -->
+    <div class="games-content">
 
-    <!-- VISTA 2 (MICROFRONTEND) -->
-    <section id="extra" class="gamification-section oculto">
-      <div id="micro-app"></div>
-    </section>
+      <!-- JUEGO 1 -->
+      <div id="vista-juego">
+
+        <h2>¿CUÁL TE INSPIRA MÁS?</h2>
+
+        <p>
+          Elige entre dos frases aleatorias.
+          Cada elección traerá nuevas opciones para seguir jugando.
+        </p>
+
+        <div class="vs-container">
+
+          <div class="choice-card" id="choice-card-1" data-card="1">
+            <img id="choice-image-1" src="Img/74.png" class="image-placeholder" />
+            <button id="vote-button-1" class="btn-primary">
+              ¡Me gusta esta!
+            </button>
+          </div>
+
+          <div class="vs-badge">VS</div>
+
+          <div class="choice-card" id="choice-card-2" data-card="2">
+            <img id="choice-image-2" src="Img/40.png" class="image-placeholder" />
+            <button id="vote-button-2" class="btn-primary">
+              ¡Me quedo con esta!
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- JUEGO 2 -->
+      <div id="vista-extra" class="oculto">
+        <div id="micro-app"></div>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
 
 
     <section id="autor-nuevo" class="autor-section">

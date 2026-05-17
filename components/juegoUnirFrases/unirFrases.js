@@ -22,7 +22,7 @@ function render(container) {
 
   container.innerHTML = `
     <div class="match-game">
-      <h2>Conecta las frases</h2>
+      <h2>Completa las frases</h2>
       <p>Selecciona una frase de la izquierda y encuentra su complemento correcto</p>
 
       <button class="btn-secondary" id="restart-game">
