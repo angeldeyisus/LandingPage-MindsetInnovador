@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin - Registro e-book</title>
+    <style>
+      body { font-family: Arial, sans-serif; margin: 0; padding: 24px; background: #f4f5f7; color: #111; }
+      h1, h2 { margin: 0 0 16px; }
+      .card { background: #fff; border-radius: 12px; box-shadow: 0 12px 30px rgba(0,0,0,0.08); padding: 24px; max-width: 920px; margin: 0 auto; }
+      form { display: grid; gap: 12px; }
+      input { width: 100%; padding: 12px 14px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 16px; }
+      button { padding: 12px 18px; background: #2563eb; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-size: 16px; }
+      button:hover { background: #1d4ed8; }
+      table { width: 100%; border-collapse: collapse; margin-top: 18px; }
+      th, td { padding: 12px 10px; text-align: left; border-bottom: 1px solid #e5e7eb; }
+      th { background: #f9fafb; }
+      .actions { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+      .message { margin-top: 12px; padding: 12px; border-radius: 10px; }
+      .message.info { background: #e0f2fe; color: #0369a1; }
+      .message.success { background: #dcfce7; color: #166534; }
+      .message.error { background: #fee2e2; color: #991b1b; }
+      .message.warning { background: #fef3c7; color: #92400e; }
+      .hidden { display: none; }
+      .admin-header { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h1>Panel Admin</h1>
+      <p>Bienvenido al panel de administración.</p>
+
+      <div id="auth-section">
+        <h2>Iniciar sesión</h2>
+        <form id="login-form">
+          <input id="admin-email" type="email" placeholder="Correo electrónico" required />
+          <input id="admin-password" type="password" placeholder="Contraseña" required />
+          <button type="submit">Entrar</button>
+        </form>
+      </div>
+
+      <div id="admin-panel" class="hidden">
+        <div class="admin-header">
+          <div>
+            <strong>Cuenta:</strong> <span id="admin-user"></span>
+          </div>
+          <button id="logout-btn" type="button">Cerrar sesión</button>
+        </div>
+
+        <h2>Clientes</h2>
+        <div id="admin-message" class="message info">Cargando...</div>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Correo</th>
+              <th>Fecha</th>
+            </tr>
+          </thead>
+          <tbody id="records-table-body"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+    <script src="scripts/supabaseConfig.js"></script>
+    <script src="scripts/admin.js"></script>
+  </body>
+</html>
