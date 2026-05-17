@@ -1612,7 +1612,7 @@ ebook-section {
     box-shadow: var(--shadow-md);
 }
 
-.btn-contactame {
+.btn-contacto {
     background: transparent;
     color: var(--primary-accent);
     border: 2px solid var(--primary-accent);
@@ -1623,7 +1623,7 @@ ebook-section {
     transition: var(--transition-smooth);
 }
 
-.btn-contactame:hover {
+.btn-contacto:hover {
     background: var(--primary-accent);
     color: white;
     transform: translateY(-3px);
@@ -1912,4 +1912,105 @@ button:focus-visible {
     margin-left: 135px;
     margin-bottom: 30px;
     font-size:  2.2rem;
+}
+
+
+
+
+
+/* MODAL */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+
+  justify-content: center;
+  align-items: center;
+}
+
+/* CONTENIDO */
+.modal-content {
+  background: white;
+  width: 90%;
+  max-width: 420px;
+  padding: 30px;
+  border-radius: 18px;
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* CERRAR */
+.cerrar {
+  position: absolute;
+  top: 12px;
+  right: 18px;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+/* FORM */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+input,
+textarea {
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+}
+
+textarea {
+  resize: none;
+  min-height: 120px;
+}
+
+form button {
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+
+
+
+.toast {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+
+  background: #16A34A;
+  color: white;
+
+  padding: 16px 22px;
+  border-radius: 14px;
+
+  font-size: 15px;
+  font-weight: 500;
+
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+
+  opacity: 0;
+  transform: translateY(20px);
+
+  pointer-events: none;
+
+  transition: all 0.35s ease;
+
+  z-index: 2000;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
 }

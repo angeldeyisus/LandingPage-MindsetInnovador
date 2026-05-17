@@ -450,7 +450,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (btnCoffee) {
         btnCoffee.addEventListener("click", () => {
-            alert("Gracias por tu interÃ©s ðŸ™Œ\nPrÃ³ximamente podrÃ¡s apoyar al autor.");
+            window.open("https://buymeacoffee.com/jesusgaxiola", "_blank");
         });
     }
 });
@@ -676,4 +676,46 @@ document.addEventListener("click", (e) => {
   if (ebookBtn) {
     handleEbookClick();
   }
+});
+
+
+
+
+
+const btnContacto = document.getElementById("btnContacto");
+const modal = document.getElementById("modalContacto");
+const cerrar = document.querySelector(".cerrar");
+
+btnContacto.addEventListener("click", () => {
+  modal.style.display = "flex";
+});
+
+cerrar.addEventListener("click", () => {
+  modal.style.display = "none";
+});
+
+window.addEventListener("click", (e) => {
+  if (e.target === modal) {
+    modal.style.display = "none";
+  }
+});
+
+
+
+const form = document.getElementById("formContacto");
+
+const toast = document.getElementById("toast");
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  modal.style.display = "none";
+
+  form.reset();
+
+  toast.classList.add("show");
+
+  setTimeout(() => {
+    toast.classList.remove("show");
+  }, 3000);
 });

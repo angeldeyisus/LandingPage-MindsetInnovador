@@ -334,7 +334,8 @@
           </ul>
           <div class="botonesAutor">
           <button class="btn-coffee">☕ Invitar un café</button>
-          <button class="btn-contactame">Contactame</button>
+          <button id="btnContacto" class="btn-contacto">Contactame</button>
+
           </div>
         </div>
 
@@ -342,18 +343,68 @@
     </section>
 
 
+
+
+    <!-- MODAL -->
+    <div id="modalContacto" class="modal">
+      <div class="modal-content">
+
+        <span class="cerrar">&times;</span>
+
+        <h2>Contáctame</h2>
+
+        <form id="formContacto">
+          <input type="text" placeholder="Tu nombre" required>
+
+          <input type="email" placeholder="Tu correo" required>
+
+          <textarea placeholder="Escribe tu mensaje..." required></textarea>
+
+          <button type="submit">Enviar</button>
+        </form>
+
+      </div>
+    </div>
+
+
+
+  <div id="toast" class="toast">
+     Tu mensaje ha sido enviado correctamente
+  </div>
+
+
+
     <section id="autor" class="other-ebooks">
       <h2> MÁS RECURSOS PARA INNOVADORES</h2>
       <div class="ebooks-grid">
+
+
         <div class="ebook-item">
           <img src="Img/Libro1.png" alt="Administración por Objetivos" class="cover-placeholder">
+
           <h4>Administracion por Objetivos de Negocio</h4>
-          <a href="#">Ver más</a>
+
+          <a href="https://buymeacoffee.com/jesusgaxiola/e/182733" target="_blank">
+            Ver más
+          </a>
         </div>
+
+
+        <div class="ebook-item">
+          <img src="Img/Libro4.png" alt="Administración por Objetivos" class="cover-placeholder">
+
+          <h4>La Innovación También se Gestiona</h4>
+
+          <a href="https://buymeacoffee.com/jesusgaxiola/e/182719" target="_blank">
+            Ver más
+          </a>
+        </div>
+
+
         <div class="ebook-item">
           <img src="Img/Libro3.png" alt="Webinar" class="cover-placeholder">
           <h4>Webinar</h4>
-          <a href="#">Ver más</a>
+          <a href="https://buymeacoffee.com/jesusgaxiola/e/165704" target="_blank">Ver más</a>
         </div>
       </div>
     </section>
