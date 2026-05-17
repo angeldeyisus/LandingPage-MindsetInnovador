@@ -1234,12 +1234,16 @@ ebook-section {
     color: var(--primary-accent);
     margin-bottom: 1.5rem;
     font-size: 2rem;
+    margin-right: 20px;
+    
 }
 
 .modal-text p {
     line-height: 1.7;
     color: var(--text-main);
     margin-bottom: 2rem;
+    margin-right: 20px;
+
 }
 
 .ebook-form {
@@ -1254,6 +1258,7 @@ ebook-section {
     border-radius: 8px;
     font-size: 1rem;
     transition: border-color 0.3s ease;
+    margin-right: 20px;
 }
 
 .ebook-form input:focus {
@@ -1931,7 +1936,7 @@ button:focus-visible {
 }
 
 /* CONTENIDO */
-.modal-content {
+.modal-content-contact {
   background: white;
   width: 90%;
   max-width: 420px;
