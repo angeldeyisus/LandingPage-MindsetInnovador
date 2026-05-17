@@ -14,7 +14,7 @@ class EbookBackend {
       throw new Error('Configura SUPABASE_URL y SUPABASE_ANON_KEY en ebookBackend.js');
     }
 
-    this.client = window.supabase.createClient(this.supabaseUrl, this.supabaseAnonKey);
+    this.client = window.supabaseClient;
   }
 
   isReady() {

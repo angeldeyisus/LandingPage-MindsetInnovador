@@ -1,4 +1,4 @@
-const supabase = window.supabase?.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+const sb = window.supabaseClient;
 
 const authSection = document.getElementById('auth-section');
 const loginForm = document.getElementById('login-form');
@@ -35,14 +35,14 @@ const renderRecords = (records) => {
 };
 
 const loadRecords = async () => {
-  if (!supabase) {
+  if (!sb) {
     showMessage('Supabase no está configurado.', 'error');
     return;
   }
 
   showMessage('Cargando registros...', 'info');
 
-  const { data, error } = await supabase
+  const { data, error } = await sb
     .from('ebook_requests')
     .select('id,name,email,created_at')
     .order('created_at', { ascending: false });
@@ -58,7 +58,7 @@ const loadRecords = async () => {
 };
 
 const updateAuthState = async () => {
-  if (!supabase) {
+  if (!sb) {
     showMessage('Supabase no está configurado.', 'error');
     return;
   }
@@ -66,7 +66,7 @@ const updateAuthState = async () => {
   const {
     data: { session },
     error,
-  } = await supabase.auth.getSession();
+  } = await sb.auth.getSession();
 
   if (error) {
     console.error('Error obteniendo sesión:', error);
@@ -86,14 +86,14 @@ const updateAuthState = async () => {
 };
 
 const signIn = async (email, password) => {
-  if (!supabase) {
+  if (!sb) {
     showMessage('Supabase no está configurado.', 'error');
     return;
   }
 
   showMessage('Iniciando sesión...', 'info');
 
-  const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+  const { data, error } = await sb.auth.signInWithPassword({ email, password });
 
   if (error) {
     console.error('Error de login:', error);
@@ -110,14 +110,14 @@ const signIn = async (email, password) => {
 };
 
 const signOut = async () => {
-  if (!supabase) return;
-  await supabase.auth.signOut();
+  if (!sb) return;
+  await sb.auth.signOut();
   authSection.style.display = 'block';
   adminPanel.style.display = 'none';
   showMessage('Sesión cerrada.', 'success');
 };
 
-if (!supabase) {
+if (!sb) {
   document.addEventListener('DOMContentLoaded', () => {
     showMessage('Supabase no está disponible. Revisa la configuración de scripts.', 'error');
   });
