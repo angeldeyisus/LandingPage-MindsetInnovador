@@ -8,6 +8,95 @@
         { id: 5, min: 109, max: 125, color: "#8B5CF6" } // Morado (Aprendizaje)
     ];
 
+    // Función para compartir en Instagram Stories
+    const shareToInstagramStory = (imagePath) => {
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        const instagramScheme = 'instagram://story-camera';
+        const instagramWeb = 'https://www.instagram.com';
+
+        const openInstagram = () => {
+            window.location.href = instagramScheme;
+            setTimeout(() => {
+                window.open(instagramWeb, '_blank');
+            }, 500);
+        };
+
+        const img = new Image();
+        img.crossOrigin = 'anonymous';
+        img.onload = () => {
+            const canvas = document.createElement('canvas');
+            canvas.width = img.width;
+            canvas.height = img.height;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0);
+
+            canvas.toBlob(async (blob) => {
+                if (!blob) {
+                    alert('No se pudo preparar la imagen para compartir. Intenta de nuevo.');
+                    return;
+                }
+
+                const file = new File([blob], `frase-mindset-${Date.now()}.png`, { type: 'image/png' });
+                const canShareFile = navigator.canShare && navigator.canShare({ files: [file] }) && navigator.share;
+
+                if (canShareFile) {
+                    try {
+                        await navigator.share({
+                            files: [file],
+                            title: 'Mindset Innovador',
+                            text: 'Comparte esta frase en tu historia de Instagram.',
+                        });
+                        return;
+                    } catch (error) {
+                        console.log('Share API error:', error);
+                    }
+                }
+
+                if (isMobile) {
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = file.name;
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+
+                    alert('📸 Imagen descargada. Abre Instagram, elige tu historia y sube esta frase.');
+                    openInstagram();
+                    return;
+                }
+
+                try {
+                    await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
+                    alert('✅ Imagen copiada al portapapeles. Abre Instagram Stories y pega la imagen.');
+                } catch (error) {
+                    console.log('Clipboard error:', error);
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = file.name;
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                    alert('📸 Imagen descargada. Abre Instagram y sube esta imagen como Story.');
+                }
+
+                window.open('https://www.instagram.com/stories/create/', '_blank');
+            }, 'image/png');
+        };
+
+        img.onerror = () => {
+            alert('No se pudo cargar la imagen. Intenta de nuevo.');
+        };
+
+        img.src = imagePath;
+    };
+    
+    // Hacer la función accesible globalmente
+    window.shareToInstagramStory = shareToInstagramStory;
+
     // 2. Generar un arreglo con todos los nÃºmeros de imagen vÃ¡lidos
     let imagenesValidas = [];
     secciones.forEach(sec => {
@@ -218,26 +307,7 @@
     if (origamiShareBtn) {
         origamiShareBtn.addEventListener('click', () => {
             if (currentOrigamiImageNumber === null) return;
-            
-            const imageUrl = `${window.location.origin}/Img/${currentOrigamiImageNumber}.png`;
-            const texto = `Descubre ideas innovadoras en Mindset Innovador 💡\n\n¡Me inspiró esta frase! ¿Cuál te inspira a ti?\n\n${window.location.origin}`;
-            
-            // Comprobar si el navegador soporta Web Share API
-            if (navigator.share) {
-                navigator.share({
-                    title: 'Mindset Innovador',
-                    text: texto,
-                    url: window.location.origin
-                }).catch(err => console.log('Error al compartir:', err));
-            } else {
-                // Fallback: copiar al portapapeles
-                const urlCompartir = `${window.location.origin}?idea=${currentOrigamiImageNumber}`;
-                navigator.clipboard.writeText(`${texto}\n\n${urlCompartir}`).then(() => {
-                    alert('¡Enlace copiado al portapapeles! 📋\nAhora puedes compartirlo en tus redes sociales.');
-                }).catch(() => {
-                    alert(`Comparte esta idea:\n${texto}`);
-                });
-            }
+            shareToInstagramStory(`Img/${currentOrigamiImageNumber}.png`);
         });
     }
 
@@ -248,6 +318,16 @@
             if (!gallerySorted.length) return;
             galleryIndex = (galleryIndex + 1) % gallerySorted.length;
             renderGalleryCard();
+        });
+    }
+
+    const galleryShareBtn = document.getElementById('gallery-share-btn');
+    if (galleryShareBtn) {
+        galleryShareBtn.addEventListener('click', () => {
+            gallerySorted = getSortedGalleryImages();
+            if (!gallerySorted.length || galleryIndex >= gallerySorted.length) return;
+            const currentImage = gallerySorted[galleryIndex];
+            shareToInstagramStory(`Img/${currentImage.numero}.png`);
         });
     }
 
