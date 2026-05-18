@@ -742,3 +742,36 @@ form.addEventListener("submit", (e) => {
     toast.classList.remove("show");
   }, 3000);
 });
+
+// --- LÓGICA DEL BARCO QUE NAVEGA CON EL SCROLL (CON VAIVÉN LADO A LADO) ---
+window.addEventListener('scroll', () => {
+    const barcoScroll = document.getElementById('barco-scroll');
+    
+    if (barcoScroll) {
+        const scrollActual = window.scrollY;
+        
+        // Evitar errores si la página es muy corta
+        const alturaTotal = document.documentElement.scrollHeight - window.innerHeight;
+        if (alturaTotal <= 0) return; 
+
+        // Porcentaje de 0 a 1
+        const porcentajeScroll = scrollActual / alturaTotal;
+        
+        // 1. CÁLCULO VERTICAL (Hacia abajo)
+        const topeMinimo = 5;  // 5%
+        const topeMaximo = 85; // 85%
+        const nuevaPosicionY = topeMinimo + (porcentajeScroll * (topeMaximo - topeMinimo));
+        
+        // 2. CÁLCULO HORIZONTAL (De lado a lado)
+        const frecuenciaOlas = 3;  // ¿Cuántas veces hace el viaje completo de izquierda a derecha?
+        const amplitud = 120;      // ¿Cuántos píxeles viaja hacia la izquierda en su punto máximo?
+        
+        // Usamos Math.sin para crear la onda. Lo multiplicamos por negativo para que 
+        // viaje hacia adentro de la pantalla (izquierda) y regrese a su origen a la derecha.
+        const movimientoX = Math.sin(porcentajeScroll * frecuenciaOlas * Math.PI * 2) * -amplitud;
+        
+        // 3. APLICAMOS LOS CAMBIOS AL BARCO
+        barcoScroll.style.top = `${nuevaPosicionY}%`;
+        barcoScroll.style.transform = `translateX(${movimientoX}px)`;
+    }
+});
