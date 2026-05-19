@@ -1,5 +1,7 @@
 ﻿let ebookBackend = null;
 
+const toast = document.getElementById("toast");
+
 try {
   ebookBackend = new window.EbookBackend({
     supabaseUrl: SUPABASE_URL,
@@ -601,7 +603,7 @@ async function submitEbookForm() {
   }
   
   if (!ebookBackend || !ebookBackend.isReady()) {
-    alert('La integración con Supabase no está configurada. Revisa la URL y la clave en script.js.');
+    alert('La integración con Supabase no está configurada.');
     return;
   }
 
@@ -609,15 +611,31 @@ async function submitEbookForm() {
 
   if (error) {
     console.error('Supabase error:', error);
-    alert('Hubo un error guardando tu información. Intenta de nuevo más tarde.');
+    alert('Hubo un error guardando tu información.');
     return;
   }
 
-  alert(`¡Gracias ${name}! Tu registro se guardó correctamente. Te enviaremos el ebook a ${email} pronto.`);
-  
+  // 🔥 DESCARGA AUTOMÁTICA
+  const link = document.createElement("a");
+  link.href = "assets/EbookElMindsetInnovador.pdf"; // ruta de tu ebook
+  link.download = "El Mindset Innovador.pdf";
+
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+
+  // limpiar inputs
   nameInput.value = '';
   emailInput.value = '';
+
   closeEbookModal();
+
+  toast.classList.add("show");
+
+  setTimeout(() => {
+    toast.classList.remove("show");
+  }, 3000);
+
 }
 
 // Cerrar modal al hacer click fuera
@@ -727,7 +745,7 @@ window.addEventListener("click", (e) => {
 
 const form = document.getElementById("formContacto");
 
-const toast = document.getElementById("toast");
+
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
