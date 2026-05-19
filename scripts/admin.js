@@ -25,7 +25,6 @@ const renderRecords = (records) => {
   records.forEach((record) => {
     const row = document.createElement('tr');
     row.innerHTML = `
-      <td>${record.id}</td>
       <td>${record.name || ''}</td>
       <td>${record.email || ''}</td>
       <td>${new Date(record.created_at).toLocaleString('es-ES')}</td>
